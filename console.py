@@ -3,11 +3,11 @@
 import cmd
 
 
-class AirBnbShell(cmd.Cmd):
+class HBNBCommand(cmd.Cmd):
     """AirBnb shell"""
 
     intro = "Welcome to the airbnb shell. Type help or ? to list commands.\n"
-    prompt = "(airbnb) "
+    prompt = "(hbnb) "
     file = None
 
     # ----- basic turtle commands -----
@@ -22,4 +22,4 @@ def parse(arg):
 
 
 if __name__ == "__main__":
-    AirBnbShell().cmdloop()
+    HBNBCommand().cmdloop()
