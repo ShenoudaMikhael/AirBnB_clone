@@ -17,7 +17,7 @@ class AirBnbShell(cmd.Cmd):
 
 
 def parse(arg):
-    "Convert a series of zero or more numbers to an argument tuple"
+    "Convert a series of zero or more strings to an argument tuple"
     return tuple(map(str, arg.split()))
 
 
