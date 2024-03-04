@@ -12,7 +12,7 @@ class AirBnbShell(cmd.Cmd):
 
     # ----- basic turtle commands -----
     def do_print_args(self, arg):
-        "Move the turtle forward by the specified distance:  FORWARD 10"
+        "echo args to shell"
         print(*parse(arg))
 
 
