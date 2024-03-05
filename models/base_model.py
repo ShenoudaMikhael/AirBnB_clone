@@ -13,10 +13,6 @@ class BaseModel:
             for k, v in kwargs.items():
                 if k != "__class__":
                     setattr(self, k, v)
-            self.created_at = datetime.strptime(
-                self.created_at, "%Y-%m-%dT%H:%M:%S.%f")
-            self.updated_at = datetime.strptime(
-                self.updated_at, "%Y-%m-%dT%H:%M:%S.%f")
             return
         self.id = uuid.uuid4().__str__()
         self.created_at = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")

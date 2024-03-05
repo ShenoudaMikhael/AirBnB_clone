@@ -11,21 +11,12 @@ class FileStorage:
 
     def all(self):
         """return all objects"""
-        try:
-            with open(
-                    "{}".format(self.__file_path),
-                    'r', encoding='utf-8') as file:
-                q = file.read()
-                print("AAAAA")
-                self.__objects = json.loads(q)
-            return self.__objects
-        except FileNotFoundError:
-            return self.__objects
+        return self.__objects
 
     def new(self, obj):
         """add new obj to objects dictionary"""
         self.__objects[
-            "{}.{}".format(obj.__class__.__name__, obj.id)] = obj.to_dict()
+            "{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
     def save(self):
         """Save objects to a file."""
@@ -33,7 +24,8 @@ class FileStorage:
         with open(
                 "{}".format(self.__file_path), "w+", encoding="utf-8") as file:
             if self.__objects is not None:
-                file.write(json.dumps(self.__objects))
+                file.write(json.dumps(
+                    {k: self.__objects[k].to_dict() for k in self.__objects}))
             else:
                 file.write(json.dumps([]))
 
@@ -43,6 +35,9 @@ class FileStorage:
         otherwise, do nothing. If the file doesn’t exist,
         no exception should be raised)
         """
+        from models.base_model import BaseModel
+        class_list = {"BaseModel": BaseModel}
+
         try:
             with open(
                     "{}".format(self.__file_path),
@@ -50,6 +45,7 @@ class FileStorage:
                 items = json.loads(file.read())
                 if not items:
                     return
-                self.__objects = items
+                self.__objects = {
+                    k: class_list[k.split('.')[0]](**items[k]) for k in items}
         except FileNotFoundError:
             pass
