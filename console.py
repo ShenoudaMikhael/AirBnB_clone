@@ -15,6 +15,15 @@ class HBNBCommand(cmd.Cmd):
         "echo args to shell"
         print(*parse(arg))
 
+    def do_quit(self, arg):
+        "Quit command to exit the program"
+        exit()
+
+    def do_EOF(self, arg):
+        """EOF to exit the program"""
+        print("")
+        return True
+
 
 def parse(arg):
     "Convert a series of zero or more strings to an argument tuple"
