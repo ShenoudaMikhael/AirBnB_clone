@@ -58,6 +58,7 @@ class HBNBCommand(cmd.Cmd):
         if arg not in self.class_list:
             print("** class doesn't exist **")
             return
+
         new_instance = self.class_list[arg.split(" ")[0]]()
         new_instance.save()
 
@@ -131,10 +132,7 @@ class HBNBCommand(cmd.Cmd):
 
             current_instance = storage.all()["{}.{}".format(
                 inputs[0], inputs[1])]
-            print(current_instance)
             current_instance.update(inputs[2], inputs[3])
-            print(current_instance)
-            return
             storage.save()
         else:
             print("** no instance found **")

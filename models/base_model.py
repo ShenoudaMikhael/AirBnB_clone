@@ -9,12 +9,14 @@ class BaseModel:
     """Class Base contains only Id, Creation date, update date."""
 
     def __init__(self, *args, **kwargs):
-        if kwargs:
+        if len(kwargs) > 0:
             for k, v in kwargs.items():
                 if k != "__class__":
                     setattr(self, k, v)
-            self.created_at =  datetime.strptime(self.created_at, "%Y-%m-%dT%H:%M:%S.%f")
-            self.updated_at =  datetime.strptime(self.updated_at, "%Y-%m-%dT%H:%M:%S.%f")
+            self.created_at = datetime.strptime(
+                self.created_at, "%Y-%m-%dT%H:%M:%S.%f")
+            self.updated_at = datetime.strptime(
+                self.updated_at, "%Y-%m-%dT%H:%M:%S.%f")
             return
         self.id = uuid.uuid4().__str__()
         self.created_at = datetime.now()
@@ -23,7 +25,7 @@ class BaseModel:
 
     def update(self, att, val):
         """update object"""
-        if att not in ['id', 'created_at', 'updated_at']:
+        if att not in ["id", "created_at", "updated_at"]:
             setattr(self, att, val)
             self.save()
 
@@ -34,9 +36,11 @@ class BaseModel:
 
     def to_dict(self):
         """serilize model to dict object"""
-        self.updated_at = datetime.strftime(self.updated_at, "%Y-%m-%dT%H:%M:%S.%f")
-        self.created_at = datetime.strftime(self.created_at, "%Y-%m-%dT%H:%M:%S.%f")
-        base_dict = self.__dict__
+        base_dict = self.__dict__.copy()
+        base_dict["updated_at"] = datetime.strftime(
+                base_dict["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
+        base_dict["created_at"] = datetime.strftime(
+                base_dict["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
         base_dict["__class__"] = self.__class__.__name__
         return base_dict
 

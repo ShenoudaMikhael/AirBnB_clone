@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """File Storage Module"""
 import json
-from datetime import datetime
+
 
 class FileStorage:
     """File Storage Class"""
@@ -15,8 +15,7 @@ class FileStorage:
 
     def new(self, obj):
         """add new obj to objects dictionary"""
-        self.__objects[
-            "{}.{}".format(obj.__class__.__name__, obj.id)] = obj
+        self.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
     def destroy(self, obj_id):
         """add new obj to objects dictionary"""
@@ -26,16 +25,17 @@ class FileStorage:
     def save(self):
         """Save objects to a file."""
 
-        with open(
-                "{}".format(self.__file_path), "w+", encoding="utf-8") as file:
+        with open("{}".format(
+                self.__file_path), "w+", encoding="utf-8") as file:
             if self.__objects is not None:
+
                 to_write = {}
-                for k in self.__objects:
-                    to_write[k]= self.__objects[k].to_dict()
+                the_copy = self.__objects.copy()
+                for k in the_copy:
+                    to_write[k] = the_copy[k].to_dict()
+                print("to_write")
                 print(to_write)
-                file.write(json.dumps(
-                   to_write,
-                    indent=4))
+                file.write(json.dumps(to_write, indent=4))
             else:
                 file.write(json.dumps([]))
 
@@ -52,6 +52,7 @@ class FileStorage:
         from models.amenity import Amenity
         from models.place import Place
         from models.review import Review
+
         class_list = {
             "BaseModel": BaseModel,
             "User": User,
@@ -60,16 +61,17 @@ class FileStorage:
             "Amenity": Amenity,
             "Place": Place,
             "Review": Review,
-            }
+        }
 
         try:
-            with open(
-                    "{}".format(self.__file_path),
-                    "r", encoding="utf-8") as file:
+            with open("{}".format(
+                    self.__file_path), "r", encoding="utf-8") as file:
                 items = json.loads(file.read())
                 if not items:
                     return
                 self.__objects = {
-                    k: class_list[k.split('.')[0]](**items[k]) for k in items}
+                    k: class_list[k.split(".")[0]](**items[k]) for k in items
+                }
+
         except FileNotFoundError:
             pass
