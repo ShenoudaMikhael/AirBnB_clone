@@ -4,6 +4,11 @@ import cmd
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -13,7 +18,15 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     file = None
 
-    class_list = {"BaseModel": BaseModel, "User": User}
+    class_list = {
+            "BaseModel": BaseModel,
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review,
+            }
 
     def do_create(self, arg):
         """Creates a new instance of class <arg>"""
@@ -21,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print("** class name missing **")
             return
-        if arg not in self.class_list.keys():
+        if arg not in self.class_list:
             print("** class doesn't exist **")
             return
         new_instance = self.class_list[arg.split(" ")[0]]()

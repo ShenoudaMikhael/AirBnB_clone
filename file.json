@@ -19,7 +19,13 @@
         "id": "a2388661-7a71-40cd-aa36-aff62fb92ee2",
         "created_at": "2024-03-06T03:49:57.353013",
         "updated_at": "2024-03-06T03:51:20.529385",
-        "__class__": "User",
-        "email": "shen@asdsdasd"
+        "email": "shen@asdsdasd",
+        "__class__": "User"
+    },
+    "Review.f413382e-4e9f-46d4-9ba9-54b770c97857": {
+        "id": "f413382e-4e9f-46d4-9ba9-54b770c97857",
+        "created_at": "2024-03-06T04:26:14.200463",
+        "updated_at": "2024-03-06T04:26:14.200671",
+        "__class__": "Review"
     }
 }
