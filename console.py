@@ -120,7 +120,8 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         inputs = arg.split(" ")
-        if "{}.{}".format(inputs[0], inputs[1]) in storage.all().keys():
+        all_data = storage.all()
+        if "{}.{}".format(inputs[0], inputs[1]) in all_data:
             if len(inputs) < 3:
                 print("** attribute name missing **")
                 return
@@ -130,7 +131,10 @@ class HBNBCommand(cmd.Cmd):
 
             current_instance = storage.all()["{}.{}".format(
                 inputs[0], inputs[1])]
+            print(current_instance)
             current_instance.update(inputs[2], inputs[3])
+            print(current_instance)
+            return
             storage.save()
         else:
             print("** no instance found **")

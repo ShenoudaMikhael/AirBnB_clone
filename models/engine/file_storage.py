@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """File Storage Module"""
 import json
-
+from datetime import datetime
 
 class FileStorage:
     """File Storage Class"""
@@ -29,8 +29,12 @@ class FileStorage:
         with open(
                 "{}".format(self.__file_path), "w+", encoding="utf-8") as file:
             if self.__objects is not None:
+                to_write = {}
+                for k in self.__objects:
+                    to_write[k]= self.__objects[k].to_dict()
+                print(to_write)
                 file.write(json.dumps(
-                    {k: self.__objects[k].to_dict() for k in self.__objects},
+                   to_write,
                     indent=4))
             else:
                 file.write(json.dumps([]))
