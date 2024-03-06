@@ -3,6 +3,7 @@
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -12,7 +13,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     file = None
 
-    class_list = {"BaseModel": BaseModel}
+    class_list = {"BaseModel": BaseModel, "User": User}
 
     def do_create(self, arg):
         """Creates a new instance of class <arg>"""
@@ -27,6 +28,8 @@ class HBNBCommand(cmd.Cmd):
         new_instance.save()
 
     def do_show(self, arg):
+        """Prints the string representation of
+        an instance based on the class name and"""
         if len(arg) == 0:
             print("** class name missing **")
             return
@@ -42,13 +45,61 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
+    def do_destroy(self, arg):
+        """Deletes an instance based on the class name and id"""
+        if len(arg) == 0:
+            print("** class name missing **")
+            return
+        if arg.split(" ")[0] not in self.class_list.keys():
+            print("** class doesn't exist **")
+            return
+        if len(arg.split(" ")) < 2:
+            print("** instance id missing **")
+            return
+        inputs = arg.split(" ")
+        if "{}.{}".format(inputs[0], inputs[1]) in storage.all().keys():
+            storage.destroy("{}.{}".format(inputs[0], inputs[1]))
+        else:
+            print("** no instance found **")
+
     def do_all(self, arg):
+        """Prints all string representation of all
+        instances based or not on the class name."""
         if len(arg) > 0 and arg not in self.class_list.keys():
             print("** class doesn't exist **")
             return
         qu = storage.all()
         print([qu[model].__str__() for model in qu])
         # There is a mistake
+
+    def do_update(self, arg):
+        """Updates an instance based on the class name and id by
+        adding or updating attribute (save the change into the JSON file)."""
+        if len(arg) == 0:
+            print("** class name missing **")
+            return
+        if len(arg) > 0 and arg.split(" ")[0] not in self.class_list.keys():
+            print("** class doesn't exist **")
+            return
+        inputs = arg.split(" ")
+        if len(inputs) < 2:
+            print("** instance id missing **")
+            return
+        inputs = arg.split(" ")
+        if "{}.{}".format(inputs[0], inputs[1]) in storage.all().keys():
+            if len(inputs) < 3:
+                print("** attribute name missing **")
+                return
+            if len(inputs) < 4:
+                print("** value missing **")
+                return
+
+            current_instance = storage.all()["{}.{}".format(
+                inputs[0], inputs[1])]
+            current_instance.update(inputs[2], inputs[3])
+            storage.save()
+        else:
+            print("** no instance found **")
 
     # ----- basic shell commands -----
     def do_print_args(self, arg):

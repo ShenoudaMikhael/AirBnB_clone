@@ -18,6 +18,11 @@ class FileStorage:
         self.__objects[
             "{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
+    def destroy(self, obj_id):
+        """add new obj to objects dictionary"""
+        self.__objects.pop(obj_id)
+        self.save()
+
     def save(self):
         """Save objects to a file."""
 
@@ -25,7 +30,8 @@ class FileStorage:
                 "{}".format(self.__file_path), "w+", encoding="utf-8") as file:
             if self.__objects is not None:
                 file.write(json.dumps(
-                    {k: self.__objects[k].to_dict() for k in self.__objects}))
+                    {k: self.__objects[k].to_dict() for k in self.__objects},
+                    indent=4))
             else:
                 file.write(json.dumps([]))
 
@@ -36,7 +42,11 @@ class FileStorage:
         no exception should be raised)
         """
         from models.base_model import BaseModel
-        class_list = {"BaseModel": BaseModel}
+        from models.user import User
+        class_list = {
+            "BaseModel": BaseModel,
+            "User": User
+            }
 
         try:
             with open(
@@ -49,3 +59,6 @@ class FileStorage:
                     k: class_list[k.split('.')[0]](**items[k]) for k in items}
         except FileNotFoundError:
             pass
+    
+
+
