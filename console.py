@@ -28,6 +28,27 @@ class HBNBCommand(cmd.Cmd):
             "Review": Review,
             }
 
+    def default(self, line):
+        """defualt action"""
+        action_list = {
+
+            "all()": self.do_all,
+            "count()": self.do_count,
+            "create()": self.do_create,
+            "show()": self.do_show,
+        }
+        parts = line.split('.')
+        if len(parts) >= 2:
+            model_name, method_name = parts
+            if method_name in action_list:
+                action_list[method_name](model_name)
+
+    def do_count(self, arg):
+        """Get model count"""
+        q = storage.all()
+        qu = {k: q[k] for k in q if k.split('.')[0] == arg}
+        print(len(qu))
+
     def do_create(self, arg):
         """Creates a new instance of class <arg>"""
 
