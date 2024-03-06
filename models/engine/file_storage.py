@@ -59,6 +59,3 @@ class FileStorage:
                     k: class_list[k.split('.')[0]](**items[k]) for k in items}
         except FileNotFoundError:
             pass
-    
-
-

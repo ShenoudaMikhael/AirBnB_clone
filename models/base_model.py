@@ -18,7 +18,7 @@ class BaseModel:
         self.created_at = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")
         self.updated_at = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")
         storage.new(self)
-    
+
     def update(self, att, val):
         """update object"""
         if att not in ['id', 'created_at', 'updated_at']:
