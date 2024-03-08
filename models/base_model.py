@@ -47,3 +47,28 @@ class BaseModel:
     def __str__(self) -> str:
         return "[{}] ({}) {}".format(
             self.__class__.__name__, self.id, self.__dict__)
+
+    @classmethod
+    def show(cls, id=""):
+        """return show function format"""
+        return ["show", " ".join([cls.__name__, id])]
+
+    @classmethod
+    def all(cls, id=""):
+        """return all function format"""
+        return ["all", " ".join([cls.__name__, id])]
+
+    @classmethod
+    def destroy(cls, id=""):
+        """return destroy function format"""
+        return ["destroy", " ".join([cls.__name__, id])]
+
+    @classmethod
+    def create(cls, id=""):
+        """return create function format"""
+        return ["create", " ".join([cls.__name__, id])]
+
+    @classmethod
+    def count(cls, id=""):
+        """return count function format"""
+        return ["count", " ".join([cls.__name__, id])]

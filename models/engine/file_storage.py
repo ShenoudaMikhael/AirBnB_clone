@@ -33,11 +33,9 @@ class FileStorage:
                 the_copy = self.__objects.copy()
                 for k in the_copy:
                     to_write[k] = the_copy[k].to_dict()
-                print("to_write")
-                print(to_write)
                 file.write(json.dumps(to_write, indent=4))
             else:
-                file.write(json.dumps([]))
+                file.write(json.dumps({}))
 
     def reload(self):
         """deserializes the JSON file to __objects
