@@ -3,7 +3,8 @@ This project delves into the exciting realm of full-stack web development by gui
    
 ## Description of the command interpreter   
 This command interpreter provides the initial interface for managing objects in Airbnb clone.   
-**How to start it**   
+   
+#### How to start it   
 - Clone the repository from GitHub:
 ```
 git clone https://github.com/ShenoudaMikhael/AirBnB_clone
@@ -16,7 +17,7 @@ cd AirBnB_clone
 ```
 ./console.py
 ```   
-**How to use it**
+#### How to use it   
 you can start interacting with it by typing commands at the prompt like:
 - Help Command
 Displays a description of available commands.
