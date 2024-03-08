@@ -139,10 +139,11 @@ class HBNBCommand(cmd.Cmd):
 
             current_instance = storage.all()[
                 "{}.{}".format(inputs[0], inputs[1])]
-            current_instance.update(inputs[2], inputs[3])
+            current_instance.update_atts(att=inputs[2], val=inputs[3])
             storage.save()
         else:
             print("** no instance found **")
+        # User.update("b2b20961-e142-4aa5-a4fa-c129ed40567c",{"naem":"asdasd","name":"asdasd"}
 
     # ----- basic shell commands -----
     def do_print_args(self, arg):
