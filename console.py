@@ -31,53 +31,25 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """defualt action"""
         action_list = {
-            
+
             "all": self.do_all,
             "count": self.do_count,
             "create": self.do_create,
             "show": self.do_show,
-        
-           
             "destroy": self.do_destroy,
-           
-            "multi-argued":
-                {
-                    "update": self.do_update
-                }
 
+            "update": self.do_update
         }
         try:
-            
             string = eval(line)
             action_list[string[0]](string[1].strip())
-            # string2 = string.split(" ")
-            # model_name, method_name, args = string2
-            # if method_name in action_list["non-argued"]:
-            #     action_list["non-argued"][method_name]("{} {}".format(model_name, args))
-            #     return
         except Exception as e:
             print(e)
-        # parts = line.split(".")
-        # if len(parts) >= 2:
-        #     model_name, method_name = parts
-        #     if model_name not in self.class_list:
-        #         return
-        #     if method_name in action_list["non-argued"]:
-        #         action_list["non-argued"][method_name](model_name)
-        #         return
-        #     argued = method_name.split('(')
-        #     if len(argued) == 2:
-        #         if argued[0] in action_list["argued"]:
-        #             arg = argued[1][1:-2]
-        #             print(arg)
-        #             print(argued)
-        #             action_list["argued"][argued[0]]("{} {}".format(model_name, arg))
-        #     # #  User.show()   return
 
     def do_count(self, arg):
         """Get model count"""
         q = storage.all()
-        
+
         # qu = {k: q[k] for k in q if k.split(".")[0] == arg}
         print(len(q.keys()))
 
@@ -138,7 +110,8 @@ class HBNBCommand(cmd.Cmd):
             return
         qu = storage.all()
         if arg:
-            qu = {item: qu[item] for item in qu.keys() if item.split('.')[0] == arg}
+            qu = {item: qu[item]
+                  for item in qu.keys() if item.split('.')[0] == arg}
         print([str(qu[model]) for model in qu])
 
     def do_update(self, arg):
@@ -164,7 +137,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
                 return
 
-            current_instance = storage.all()["{}.{}".format(inputs[0], inputs[1])]
+            current_instance = storage.all()[
+                "{}.{}".format(inputs[0], inputs[1])]
             current_instance.update(inputs[2], inputs[3])
             storage.save()
         else:
