@@ -93,6 +93,7 @@ class HBNBCommand(cmd.Cmd):
 
         new_instance = self.class_list[arg.split(" ")[0]]()
         new_instance.save()
+        print(new_instance.id)
 
     def do_show(self, arg):
         """Prints the string representation of
