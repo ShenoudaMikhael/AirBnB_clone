@@ -27,7 +27,7 @@ class FileStorage:
 
         with open("{}".format(
                 self.__file_path), "w+", encoding="utf-8") as file:
-            if self.__objects is not None:
+            if len(self.__objects) > 0:
 
                 to_write = {}
                 the_copy = self.__objects.copy()

@@ -14,7 +14,7 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """AirBnb shell"""
 
-    intro = "Welcome to the airbnb shell. Type help or ? to list commands.\n"
+    # intro = "Welcome to the airbnb shell. Type help or ? to list commands.\n"
     prompt = "(hbnb) "
     file = None
 
@@ -29,9 +29,8 @@ class HBNBCommand(cmd.Cmd):
     }
 
     def default(self, line):
-        """defualt action"""
-
-         # User.update("b2b20961-e142-4aa5-a4fa-c129ed40567c",{"naem":"asdasd","name":"asdasd"})
+        """defualt action
+        """
         action_list = {
 
             "all": self.do_all,
@@ -49,7 +48,8 @@ class HBNBCommand(cmd.Cmd):
             print(e)
 
     def do_count(self, arg):
-        """Get model count"""
+        """Get model count
+        """
         q = storage.all()
 
         # qu = {k: q[k] for k in q if k.split(".")[0] == arg}
@@ -71,7 +71,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Prints the string representation of
-        an instance based on the class name and"""
+        an instance based on the class name and
+        """
         if len(arg) == 0:
             print("** class name missing **")
             return
@@ -88,7 +89,8 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, arg):
-        """Deletes an instance based on the class name and id"""
+        """Deletes an instance based on the class name and id
+        """
         if len(arg) == 0:
             print("** class name missing **")
             return
@@ -106,7 +108,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Prints all string representation of all
-        instances based or not on the class name."""
+        instances based or not on the class name.
+        """
         if len(arg) > 0 and arg not in self.class_list.keys():
             print("** class doesn't exist **")
             return
@@ -118,7 +121,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id by
-        adding or updating attribute (save the change into the JSON file)."""
+        adding or updating attribute (save the change into the JSON file).
+        """
         if len(arg) == 0:
             print("** class name missing **")
             return
@@ -149,11 +153,13 @@ class HBNBCommand(cmd.Cmd):
 
     # ----- basic shell commands -----
     def do_print_args(self, arg):
-        "echo args to shell"
+        """echo args to shell
+        """
         print(*parse(arg))
 
     def do_quit(self, arg):
-        "Quit command to exit the program"
+        """Quit command to exit the program
+        """
         exit()
 
     def do_EOF(self, arg):
@@ -161,6 +167,10 @@ class HBNBCommand(cmd.Cmd):
         print("")
         return True
 
+    def emptyline(self):
+        """nothing on empty line
+        """
+        pass
 
 def parse(arg):
     "Convert a series of zero or more strings to an argument tuple"
