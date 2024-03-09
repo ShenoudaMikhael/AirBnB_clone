@@ -15,7 +15,7 @@ class HBNBCommand(cmd.Cmd):
     """AirBnb shell"""
 
     # intro = "Welcome to the airbnb shell. Type help or ? to list commands.\n"
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
     file = None
 
     class_list = {
