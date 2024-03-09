@@ -22,11 +22,11 @@ class test_init_file_storage(unittest.TestCase):
     def test_storage_init(self):
         self.assertEqual(type(models.storage), FileStorage)
 
-    # def test_private_str(self):
-    #     self.assertEqual(str, type(FileStorage.__file_path))
+    def test_private_str(self):
+        self.assertEqual(str, type(models.storage._FileStorage__file_path))
 
-    # def test_private_dict(self):
-    #     self.assertEqual(dict, type(FileStorage.__objects))
+    def test_private_dict(self):
+        self.assertEqual(dict, type(models.storage._FileStorage__objects))
 
 
 class test_FileStorage_methods(unittest.TestCase):
