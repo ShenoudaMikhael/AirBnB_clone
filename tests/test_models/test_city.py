@@ -76,17 +76,18 @@ class test_City_to_dict(unittest.TestCase):
         self.assertEqual(str, type(city_dict["updated_at"]))
 
     def test_to_dict_output(self):
+        """to dect function test"""
         dt = datetime.now()
         city = City()
         city.id = "1"
         city.updated_at = city.created_at = dt
-        dict = {
+        mdict = {
             "id": "1",
             "__class__": "City",
             "created_at": dt.isoformat(),
             "updated_at": dt.isoformat(),
         }
-        self.assertDictEqual(city.to_dict(), dict)
+        self.assertDictEqual(city.to_dict(), mdict)
 
 
 if __name__ == "__main__":

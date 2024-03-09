@@ -49,7 +49,7 @@ class test_init_State(unittest.TestCase):
         state2 = State()
         self.assertLess(state1.updated_at, state2.updated_at)
 
-    def test_no_args(self):
+    def test_no_args_sec(self):
         """test no args"""
         state = State(None)
         self.assertNotIn(None, state.__dict__.values())
