@@ -5,7 +5,7 @@ from datetime import datetime
 from models.base_model import BaseModel
 
 
-class test_BaseModel_init(unittest.TestCase):
+class TestBaseModelInit(unittest.TestCase):
     """Unittests for testing init of User class"""
 
     def test_no_args(self):
@@ -50,6 +50,15 @@ class test_BaseModel_save(unittest.TestCase):
         data = instance.updated_at
         instance.save()
         self.assertNotEqual(data, instance.updated_at)
+
+    def test_two_saves(self):
+        instance = BaseModel()
+        first_updated_at = instance.updated_at
+        instance.save()
+        second_updated_at = instance.updated_at
+        self.assertLess(first_updated_at, second_updated_at)
+        instance.save()
+        self.assertLess(second_updated_at, instance.updated_at)
 
 
 if __name__ == "__main__":
