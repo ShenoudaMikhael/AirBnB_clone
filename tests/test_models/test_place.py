@@ -44,15 +44,17 @@ class test_init_Place(unittest.TestCase):
         user1 = Place()
         user2 = Place()
         self.assertLess(user1.updated_at, user2.updated_at)
-    
+
+
 class test_User_save(unittest.TestCase):
     """Unittests for save"""
-    
+
     def test_save(self):
         instance = Place()
         data = instance.updated_at
         instance.save()
         self.assertNotEqual(data, instance.updated_at)
+
 
 if __name__ == "__main__":
     unittest.main()

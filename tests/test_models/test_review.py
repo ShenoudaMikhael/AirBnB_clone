@@ -27,7 +27,6 @@ class test_init_Review(unittest.TestCase):
         """name is a string"""
         self.assertEqual(str, type(Review.text))
 
-
     def test_different_created_at(self):
         """different time when create"""
         user1 = Review()
@@ -39,16 +38,17 @@ class test_init_Review(unittest.TestCase):
         user1 = Review()
         user2 = Review()
         self.assertLess(user1.updated_at, user2.updated_at)
-    
+
+
 class test_Review_save(unittest.TestCase):
     """Unittests for save"""
-    
+
     def test_save(self):
         instance = Review()
         data = instance.updated_at
         instance.save()
         self.assertNotEqual(data, instance.updated_at)
 
-    
+
 if __name__ == "__main__":
     unittest.main()

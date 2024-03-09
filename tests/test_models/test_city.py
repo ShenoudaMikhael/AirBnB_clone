@@ -48,16 +48,17 @@ class test_init_City(unittest.TestCase):
 
 class test_City_save(unittest.TestCase):
     """Unittests for save"""
-    
+
     def test_save(self):
         instance = City()
         data = instance.updated_at
         instance.save()
         self.assertNotEqual(data, instance.updated_at)
 
+
 class test_City_to_dict(unittest.TestCase):
     """Unittests for to_dict"""
-    
+
     def test_to_dict_attrs(self):
         """test all attributes"""
         city = City()
@@ -80,12 +81,13 @@ class test_City_to_dict(unittest.TestCase):
         city.id = "1"
         city.updated_at = city.created_at = dt
         dict = {
-            'id': '1',
-            '__class__': 'City',
-            'created_at': dt.isoformat(),
-            'updated_at': dt.isoformat(),
+            "id": "1",
+            "__class__": "City",
+            "created_at": dt.isoformat(),
+            "updated_at": dt.isoformat(),
         }
         self.assertDictEqual(city.to_dict(), dict)
-    
+
+
 if __name__ == "__main__":
     unittest.main()

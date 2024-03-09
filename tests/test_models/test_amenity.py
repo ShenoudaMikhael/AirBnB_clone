@@ -49,7 +49,7 @@ class test_init_Amenity(unittest.TestCase):
         amenity2 = Amenity()
         self.assertLess(amenity1.updated_at, amenity2.updated_at)
 
-    def test_no_args(self):
+    def test_no_args_sec(self):
         """test no args"""
         amenity = Amenity(None)
         self.assertNotIn(None, amenity.__dict__.values())

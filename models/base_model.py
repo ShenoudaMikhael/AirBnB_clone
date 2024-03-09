@@ -13,8 +13,10 @@ class BaseModel:
             for k, v in kwargs.items():
                 if k != "__class__":
                     setattr(self, k, v)
-            self.created_at = datetime.strptime(self.created_at, "%Y-%m-%dT%H:%M:%S.%f")
-            self.updated_at = datetime.strptime(self.updated_at, "%Y-%m-%dT%H:%M:%S.%f")
+            self.created_at = datetime.strptime(
+                self.created_at, "%Y-%m-%dT%H:%M:%S.%f")
+            self.updated_at = datetime.strptime(
+                self.updated_at, "%Y-%m-%dT%H:%M:%S.%f")
             return
         self.id = uuid.uuid4().__str__()
         self.created_at = datetime.now()
@@ -49,7 +51,8 @@ class BaseModel:
         return base_dict
 
     def __str__(self) -> str:
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__)
 
     @classmethod
     def show(cls, id=""):
