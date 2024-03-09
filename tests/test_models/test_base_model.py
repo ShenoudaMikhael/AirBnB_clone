@@ -60,6 +60,18 @@ class test_BaseModel_save(unittest.TestCase):
         instance.save()
         self.assertLess(second_updated_at, instance.updated_at)
 
+    def test_save_with_arg(self):
+        instance = BaseModel()
+        with self.assertRaises(TypeError):
+            instance.save(None)
+
+    def test_save_updates_file(self):
+        instance = BaseModel()
+        instance.save()
+        instanceid = "BaseModel." + instance.id
+        with open("file.json", "r", encoding='utf-8') as f:
+            self.assertIn(instanceid, f.read())
+
 
 if __name__ == "__main__":
     unittest.main()
