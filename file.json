@@ -895,5 +895,227 @@
         "created_at": "2024-03-09T09:43:52.158432",
         "updated_at": "2024-03-09T09:43:52.158444",
         "__class__": "User"
+    },
+    "BaseModel.d3759e28-f788-4a85-9d63-530c533ee53b": {
+        "id": "d3759e28-f788-4a85-9d63-530c533ee53b",
+        "created_at": "2024-03-09T11:41:27.991992",
+        "updated_at": "2024-03-09T11:41:27.992003",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.931c6a2c-8d3f-4f85-80e9-07d23274af1f": {
+        "id": "931c6a2c-8d3f-4f85-80e9-07d23274af1f",
+        "created_at": "2024-03-09T11:41:27.992638",
+        "updated_at": "2024-03-09T11:41:27.992643",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.49d49dcc-a75f-4ed2-8b8c-fbe5fe8d99de": {
+        "id": "49d49dcc-a75f-4ed2-8b8c-fbe5fe8d99de",
+        "created_at": "2024-03-09T11:41:27.992662",
+        "updated_at": "2024-03-09T11:41:27.992663",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.37a08fc5-613c-4d8b-a573-68fbf3bfcda4": {
+        "id": "37a08fc5-613c-4d8b-a573-68fbf3bfcda4",
+        "created_at": "2024-03-09T11:41:27.993062",
+        "updated_at": "2024-03-09T11:41:27.993066",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.7b9befae-9a83-41bf-8486-8e3cff684244": {
+        "id": "7b9befae-9a83-41bf-8486-8e3cff684244",
+        "created_at": "2024-03-09T11:41:27.993084",
+        "updated_at": "2024-03-09T11:41:27.993085",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.79565ab7-a3b3-4772-b909-ea33b137b779": {
+        "id": "79565ab7-a3b3-4772-b909-ea33b137b779",
+        "created_at": "2024-03-09T11:41:27.993198",
+        "updated_at": "2024-03-09T11:41:27.993200",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.74847a01-d589-4408-a486-f02f491352ad": {
+        "id": "74847a01-d589-4408-a486-f02f491352ad",
+        "created_at": "2024-03-09T11:41:27.993290",
+        "updated_at": "2024-03-09T11:41:27.993292",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.51fccc4f-4b01-4d74-919d-fdeb4da0a56e": {
+        "id": "51fccc4f-4b01-4d74-919d-fdeb4da0a56e",
+        "created_at": "2024-03-09T11:41:27.993401",
+        "updated_at": "2024-03-09T11:41:27.993402",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.afa46a31-c9f7-43f3-914a-ca93623875fa": {
+        "id": "afa46a31-c9f7-43f3-914a-ca93623875fa",
+        "created_at": "2024-03-09T11:41:27.993418",
+        "updated_at": "2024-03-09T11:41:27.993419",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.4888e280-277e-4b88-b391-dc2a727df6ad": {
+        "id": "4888e280-277e-4b88-b391-dc2a727df6ad",
+        "created_at": "2024-03-09T11:41:27.993507",
+        "updated_at": "2024-03-09T11:41:27.993509",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.50ac9484-5cec-4352-8094-19adb9020209": {
+        "id": "50ac9484-5cec-4352-8094-19adb9020209",
+        "created_at": "2024-03-09T11:41:27.993644",
+        "updated_at": "2024-03-09T11:41:27.993651",
+        "__class__": "BaseModel"
+    },
+    "City.5a2a284b-1928-4e93-9b44-d2ed036ba4c5": {
+        "id": "5a2a284b-1928-4e93-9b44-d2ed036ba4c5",
+        "created_at": "2024-03-09T11:41:28.000144",
+        "updated_at": "2024-03-09T11:41:28.000161",
+        "__class__": "City"
+    },
+    "City.66492c65-7e07-4c41-9a35-80305917bcaa": {
+        "id": "66492c65-7e07-4c41-9a35-80305917bcaa",
+        "created_at": "2024-03-09T11:41:28.006811",
+        "updated_at": "2024-03-09T11:41:28.006819",
+        "__class__": "City"
+    },
+    "City.18311740-3033-42c8-8981-f52a6edda906": {
+        "id": "1",
+        "created_at": "2024-03-09T11:41:28.006964",
+        "updated_at": "2024-03-09T11:41:28.006964",
+        "__class__": "City"
+    },
+    "City.3fd5fc0d-d9fb-4323-b967-8b2878c0a3f4": {
+        "id": "3fd5fc0d-d9fb-4323-b967-8b2878c0a3f4",
+        "created_at": "2024-03-09T11:41:28.007224",
+        "updated_at": "2024-03-09T11:41:28.007228",
+        "__class__": "City"
+    },
+    "City.aee3e552-89f4-40bd-82d8-5b13e6747ed9": {
+        "id": "aee3e552-89f4-40bd-82d8-5b13e6747ed9",
+        "created_at": "2024-03-09T11:41:28.007373",
+        "updated_at": "2024-03-09T11:41:28.007375",
+        "__class__": "City"
+    },
+    "City.9ccf4307-8e32-4a08-8683-c9eb09c82ab6": {
+        "id": "9ccf4307-8e32-4a08-8683-c9eb09c82ab6",
+        "created_at": "2024-03-09T11:41:28.007470",
+        "updated_at": "2024-03-09T11:41:28.007472",
+        "__class__": "City"
+    },
+    "City.bc042853-c768-4232-9776-20cf6fa559b0": {
+        "id": "bc042853-c768-4232-9776-20cf6fa559b0",
+        "created_at": "2024-03-09T11:41:28.007485",
+        "updated_at": "2024-03-09T11:41:28.007486",
+        "__class__": "City"
+    },
+    "City.2a70d442-5aeb-4eb2-be5e-26486aa41198": {
+        "id": "2a70d442-5aeb-4eb2-be5e-26486aa41198",
+        "created_at": "2024-03-09T11:41:28.007550",
+        "updated_at": "2024-03-09T11:41:28.007551",
+        "__class__": "City"
+    },
+    "City.5081f807-9cec-4082-afd4-c399e8681fc3": {
+        "id": "5081f807-9cec-4082-afd4-c399e8681fc3",
+        "created_at": "2024-03-09T11:41:28.007564",
+        "updated_at": "2024-03-09T11:41:28.007565",
+        "__class__": "City"
+    },
+    "City.047dc46d-85a7-4514-b372-7d6ddfa5153d": {
+        "id": "047dc46d-85a7-4514-b372-7d6ddfa5153d",
+        "created_at": "2024-03-09T11:41:28.007626",
+        "updated_at": "2024-03-09T11:41:28.007627",
+        "__class__": "City"
+    },
+    "City.d92a7294-0d06-4d71-b264-11697f7df9b5": {
+        "id": "d92a7294-0d06-4d71-b264-11697f7df9b5",
+        "created_at": "2024-03-09T11:41:28.007729",
+        "updated_at": "2024-03-09T11:41:28.007730",
+        "__class__": "City"
+    },
+    "City.07941e3b-eb63-40a0-acf1-1e7858c6e2c9": {
+        "id": "07941e3b-eb63-40a0-acf1-1e7858c6e2c9",
+        "created_at": "2024-03-09T11:41:28.007808",
+        "updated_at": "2024-03-09T11:41:28.007809",
+        "__class__": "City"
+    },
+    "City.ee36029c-85c9-4117-bebe-fc052187f084": {
+        "id": "ee36029c-85c9-4117-bebe-fc052187f084",
+        "created_at": "2024-03-09T11:41:28.007823",
+        "updated_at": "2024-03-09T11:41:28.007824",
+        "__class__": "City"
+    },
+    "City.78826cf9-5f09-4b85-9821-b910ae0aeb1f": {
+        "id": "78826cf9-5f09-4b85-9821-b910ae0aeb1f",
+        "created_at": "2024-03-09T11:41:28.007885",
+        "updated_at": "2024-03-09T11:41:28.007887",
+        "__class__": "City"
+    },
+    "Place.7f50a00e-5ffa-42b4-bbcf-fa6dce19fd19": {
+        "id": "7f50a00e-5ffa-42b4-bbcf-fa6dce19fd19",
+        "created_at": "2024-03-09T11:41:28.008000",
+        "updated_at": "2024-03-09T11:41:28.008007",
+        "__class__": "Place"
+    },
+    "Place.74999ff1-3ef5-4c7b-9ea5-5736486f7fdc": {
+        "id": "74999ff1-3ef5-4c7b-9ea5-5736486f7fdc",
+        "created_at": "2024-03-09T11:41:28.013329",
+        "updated_at": "2024-03-09T11:41:28.013337",
+        "__class__": "Place"
+    },
+    "Place.26dcf72c-9488-4f51-82cd-b3e878651f41": {
+        "id": "26dcf72c-9488-4f51-82cd-b3e878651f41",
+        "created_at": "2024-03-09T11:41:28.013416",
+        "updated_at": "2024-03-09T11:41:28.013417",
+        "__class__": "Place"
+    },
+    "Place.0ff6cafe-21a6-462c-8ddd-b04146c45029": {
+        "id": "0ff6cafe-21a6-462c-8ddd-b04146c45029",
+        "created_at": "2024-03-09T11:41:28.013431",
+        "updated_at": "2024-03-09T11:41:28.013433",
+        "__class__": "Place"
+    },
+    "Place.7af1bdb0-67c2-4dd6-9edc-3a1da9753d38": {
+        "id": "7af1bdb0-67c2-4dd6-9edc-3a1da9753d38",
+        "created_at": "2024-03-09T11:41:28.013521",
+        "updated_at": "2024-03-09T11:41:28.013523",
+        "__class__": "Place"
+    },
+    "Place.e2918b73-3002-43e9-a828-ad0a0e149790": {
+        "id": "e2918b73-3002-43e9-a828-ad0a0e149790",
+        "created_at": "2024-03-09T11:41:28.013536",
+        "updated_at": "2024-03-09T11:41:28.013537",
+        "__class__": "Place"
+    },
+    "Place.273ded51-c37a-4eff-848b-0bb5a551ecd8": {
+        "id": "273ded51-c37a-4eff-848b-0bb5a551ecd8",
+        "created_at": "2024-03-09T11:41:28.013598",
+        "updated_at": "2024-03-09T11:41:28.013599",
+        "__class__": "Place"
+    },
+    "Place.8ca2f087-7794-4da9-8b56-f8b4abc99f9d": {
+        "id": "8ca2f087-7794-4da9-8b56-f8b4abc99f9d",
+        "created_at": "2024-03-09T11:41:28.013694",
+        "updated_at": "2024-03-09T11:41:28.013696",
+        "__class__": "Place"
+    },
+    "Place.fd6d00ee-e58f-46d0-97aa-3b782724c1b0": {
+        "id": "fd6d00ee-e58f-46d0-97aa-3b782724c1b0",
+        "created_at": "2024-03-09T11:41:28.013753",
+        "updated_at": "2024-03-09T11:41:28.013754",
+        "__class__": "Place"
+    },
+    "Place.33e14328-9bd7-469c-9b68-4eef2c89f3be": {
+        "id": "33e14328-9bd7-469c-9b68-4eef2c89f3be",
+        "created_at": "2024-03-09T11:41:28.013766",
+        "updated_at": "2024-03-09T11:41:28.013767",
+        "__class__": "Place"
+    },
+    "Place.f8a96a2e-ec13-4768-8f6a-6e79f43c06e5": {
+        "id": "f8a96a2e-ec13-4768-8f6a-6e79f43c06e5",
+        "created_at": "2024-03-09T11:41:28.013816",
+        "updated_at": "2024-03-09T11:41:28.013818",
+        "__class__": "Place"
+    },
+    "User.f2adae5b-7e68-479c-ad6f-ec0054511b21": {
+        "id": "f2adae5b-7e68-479c-ad6f-ec0054511b21",
+        "created_at": "2024-03-09T11:41:28.013916",
+        "updated_at": "2024-03-09T11:41:28.013922",
+        "__class__": "User"
     }
 }
