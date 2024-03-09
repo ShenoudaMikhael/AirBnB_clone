@@ -89,33 +89,37 @@ class test_FileStorage_methods(unittest.TestCase):
             self.assertIn("City." + city.id, text)
             self.assertIn("Amenity." + amenity.id, text)
             self.assertIn("Review." + review.id, text)
+    
+    def test_reload(self):
+        basemodel = BaseModel()
+        user = User()
+        city = City()
+        place = Place()
+        state = State()
+        review = Review()
+        amenity = Amenity()
 
-    # def test_reload(self):
-    #     basemodel = BaseModel()
-    #     user = User()
-    #     city = City()
-    #     place = Place()
-    #     state = State()
-    #     review = Review()
-    #     amenity = Amenity()
-    #     models.storage.new(basemodel)
-    #     models.storage.new(user)
-    #     models.storage.new(city)
-    #     models.storage.new(place)
-    #     models.storage.new(state)
-    #     models.storage.new(review)
-    #     models.storage.new(amenity)
-    #     models.storage.save()
-    #     models.storage.reload()
-    #     objs = FileStorage.__objects
-    #     self.assertIn("BaseModel." + basemodel.id, objs)
-    #     self.assertIn("User." + user.id, objs)
-    #     self.assertIn("State." + state.id, objs)
-    #     self.assertIn("Place." + place.id, objs)
-    #     self.assertIn("City." + city.id, objs)
-    #     self.assertIn("Amenity." + amenity.id, objs)
-    #     self.assertIn("Review." + review.id, objs)
+        models.storage.new(basemodel)
+        models.storage.new(user)
+        models.storage.new(city)
+        models.storage.new(place)
+        models.storage.new(state)
+        models.storage.new(review)
+        models.storage.new(amenity)
 
+        models.storage.save()
+
+        models.storage.reload()
+
+        objs = models.storage._FileStorage__objects
+
+        self.assertIn("BaseModel." + basemodel.id, objs)
+        self.assertIn("User." + user.id, objs)
+        self.assertIn("State." + state.id, objs)
+        self.assertIn("Place." + place.id, objs)
+        self.assertIn("City." + city.id, objs)
+        self.assertIn("Amenity." + amenity.id, objs)
+        self.assertIn("Review." + review.id, objs)
 
 if __name__ == "__main__":
     unittest.main()
