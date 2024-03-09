@@ -79,7 +79,7 @@ class BaseModel:
     @classmethod
     def update(cls, id="", att="", prop="", **kwarg):
         """return update function format"""
-        if len(kwarg) > 0:
-            return ["update", " ".join([cls.__name__, id, {**kwarg}])]
-            
+        if type(att) is dict:
+            return ["update", " ".join([cls.__name__, id]), att]
+            # User.update("b2b20961-e142-4aa5-a4fa-c129ed40567c",{"bella":"shno"})
         return ["update", " ".join([cls.__name__, id, att, prop])]
