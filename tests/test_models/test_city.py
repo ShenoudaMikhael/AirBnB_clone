@@ -46,7 +46,7 @@ class test_init_City(unittest.TestCase):
         user2 = City()
         self.assertLess(user1.updated_at, user2.updated_at)
     
-class test_User_save(unittest.TestCase):
+class test_City_save(unittest.TestCase):
     """Unittests for save"""
     
     def test_save(self):
@@ -55,5 +55,37 @@ class test_User_save(unittest.TestCase):
         instance.save()
         self.assertNotEqual(data, instance.updated_at)
 
+class test_City_to_dict(unittest.TestCase):
+    """Unittests for to_dict"""
+    
+    def test_to_dict_attrs(self):
+        """test all attributes"""
+        city = City()
+        self.assertIn("id", city.to_dict())
+        self.assertIn("created_at", city.to_dict())
+        self.assertIn("updated_at", city.to_dict())
+        self.assertIn("__class__", city.to_dict())
+
+    def test_to_dict_strs(self):
+        """test strings in the dictionary"""
+        city = City()
+        city_dict = city.to_dict()
+        self.assertEqual(str, type(city_dict["id"]))
+        self.assertEqual(str, type(city_dict["created_at"]))
+        self.assertEqual(str, type(city_dict["updated_at"]))
+
+    def test_to_dict_output(self):
+        dt = datetime.now()
+        city = City()
+        city.id = "1"
+        city.updated_at = city.created_at = dt
+        dict = {
+            'id': '1',
+            '__class__': 'City',
+            'created_at': dt.isoformat(),
+            'updated_at': dt.isoformat(),
+        }
+        self.assertDictEqual(city.to_dict(), dict)
+    
 if __name__ == "__main__":
     unittest.main()
