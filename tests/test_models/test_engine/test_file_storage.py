@@ -129,6 +129,10 @@ class test_FileStorage_methods(unittest.TestCase):
         self.assertIn("Amenity." + amenity.id, objs)
         self.assertIn("Review." + review.id, objs)
 
+    def test_new_with_args(self):
+        with self.assertRaises(TypeError):
+            models.storage.new(BaseModel(), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
