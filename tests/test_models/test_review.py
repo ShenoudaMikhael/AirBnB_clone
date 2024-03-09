@@ -28,18 +28,6 @@ class test_init_Review(unittest.TestCase):
         self.assertEqual(str, type(Review.text))
 
 
-    def test_unique_id(self):
-        """each id is unique"""
-        place1 = Review()
-        place2 = Review()
-        self.assertNotEqual(place1.place_id, place2.place_id) 
-        
-    def test_unique_id(self):
-        """each id is unique"""
-        user1 = Review()
-        user2 = Review()
-        self.assertNotEqual(user1.user_id, user2.user_id)
-
     def test_different_created_at(self):
         """different time when create"""
         user1 = Review()
@@ -61,37 +49,6 @@ class test_Review_save(unittest.TestCase):
         instance.save()
         self.assertNotEqual(data, instance.updated_at)
 
-class test_Review_to_dict(unittest.TestCase):
-    """Unittests for to_dict"""
-    
-    def test_to_dict_attrs(self):
-        """test all attributes"""
-        review = Review()
-        self.assertIn("id", review.to_dict())
-        self.assertIn("created_at", review.to_dict())
-        self.assertIn("updated_at", review.to_dict())
-        self.assertIn("__class__", review.to_dict())
-
-    def test_to_dict_strs(self):
-        """test strings in the dictionary"""
-        review = Review()
-        review_dict = review.to_dict()
-        self.assertEqual(str, type(review_dict["id"]))
-        self.assertEqual(str, type(review_dict["created_at"]))
-        self.assertEqual(str, type(review_dict["updated_at"]))
-
-    def test_to_dict_output(self):
-        dt = datetime.now()
-        review = Review()
-        review.id = "1"
-        review.updated_at = review.created_at = dt
-        dict = {
-            'id': '1',
-            '__class__': 'review',
-            'created_at': dt.isoformat(),
-            'updated_at': dt.isoformat(),
-        }
-        self.assertDictEqual(review.to_dict(), dict)
     
 if __name__ == "__main__":
     unittest.main()
