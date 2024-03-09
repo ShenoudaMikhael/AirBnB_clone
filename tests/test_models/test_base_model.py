@@ -67,6 +67,13 @@ class test_BaseModel_to_dict(unittest.TestCase):
         data = instance.to_dict()
         self.assertEqual(dict, type(data))
 
+    def test_to_dict_keys(self):
+        instance = BaseModel()
+        self.assertIn("id", instance.to_dict())
+        self.assertIn("created_at", instance.to_dict())
+        self.assertIn("updated_at", instance.to_dict())
+        self.assertIn("__class__", instance.to_dict())
+
 
 if __name__ == "__main__":
     unittest.main()
