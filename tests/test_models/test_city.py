@@ -27,7 +27,6 @@ class test_init_City(unittest.TestCase):
         """name is a string"""
         self.assertEqual(str, type(City.name))
 
-
     def test_unique_id(self):
         """each id is unique"""
         user1 = City()
@@ -45,7 +44,8 @@ class test_init_City(unittest.TestCase):
         user1 = City()
         user2 = City()
         self.assertLess(user1.updated_at, user2.updated_at)
-    
+
+
 class test_City_save(unittest.TestCase):
     """Unittests for save"""
     

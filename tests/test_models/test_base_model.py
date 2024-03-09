@@ -4,6 +4,7 @@ import unittest
 from datetime import datetime
 from models.base_model import BaseModel
 
+
 class test_BaseModel_init(unittest.TestCase):
     """Unittests for testing init of User class"""
 
@@ -40,9 +41,10 @@ class test_BaseModel_init(unittest.TestCase):
         user2 = BaseModel()
         self.assertLess(user1.updated_at, user2.updated_at)
 
+
 class test_BaseModel_save(unittest.TestCase):
     """Unittests for save"""
-    
+
     def test_save(self):
         instance = BaseModel()
         data = instance.updated_at

@@ -43,11 +43,12 @@ class HBNBCommand(cmd.Cmd):
         }
         try:
             string = eval(line)
-            action_list[string[0]](string[1].strip())
+            action_list[string[0]](
+                string[1].strip(), string[2] if len(string) == 3 else None)
         except Exception as e:
             print(e)
 
-    def do_count(self, arg):
+    def do_count(self, arg, other=None):
         """Get model count
         """
         q = storage.all()
@@ -55,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
         # qu = {k: q[k] for k in q if k.split(".")[0] == arg}
         print(len(q.keys()))
 
-    def do_create(self, arg):
+    def do_create(self, arg, other=None):
         """Creates a new instance of class <arg>"""
 
         if len(arg) == 0:
@@ -69,7 +70,7 @@ class HBNBCommand(cmd.Cmd):
         new_instance.save()
         print(new_instance.id)
 
-    def do_show(self, arg):
+    def do_show(self, arg, other=None):
         """Prints the string representation of
         an instance based on the class name and
         """
@@ -88,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
-    def do_destroy(self, arg):
+    def do_destroy(self, arg, other=None):
         """Deletes an instance based on the class name and id
         """
         if len(arg) == 0:
@@ -106,7 +107,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
-    def do_all(self, arg):
+    def do_all(self, arg, other=None):
         """Prints all string representation of all
         instances based or not on the class name.
         """
@@ -119,7 +120,7 @@ class HBNBCommand(cmd.Cmd):
                   for item in qu.keys() if item.split('.')[0] == arg}
         print([str(qu[model]) for model in qu])
 
-    def do_update(self, arg):
+    def do_update(self, arg, my_dict=None):
         """Updates an instance based on the class name and id by
         adding or updating attribute (save the change into the JSON file).
         """
@@ -133,19 +134,23 @@ class HBNBCommand(cmd.Cmd):
         if len(inputs) < 2:
             print("** instance id missing **")
             return
-        inputs = arg.split(" ")
         all_data = storage.all()
         if "{}.{}".format(inputs[0], inputs[1]) in all_data:
-            if len(inputs) < 3:
+            if len(inputs) < 3 and my_dict is None:
                 print("** attribute name missing **")
                 return
-            if len(inputs) < 4:
+            if len(inputs) < 4 and my_dict is None:
                 print("** value missing **")
                 return
 
             current_instance = storage.all()[
                 "{}.{}".format(inputs[0], inputs[1])]
-            current_instance.update_atts(att=inputs[2], val=inputs[3])
+            # check for dict
+            if my_dict is not None:
+                for k in my_dict:
+                    current_instance.update_atts(att=k, val=my_dict[k])
+            else:
+                current_instance.update_atts(att=inputs[2], val=inputs[3])
             storage.save()
         else:
             print("** no instance found **")
@@ -171,6 +176,7 @@ class HBNBCommand(cmd.Cmd):
         """nothing on empty line
         """
         pass
+
 
 def parse(arg):
     "Convert a series of zero or more strings to an argument tuple"
