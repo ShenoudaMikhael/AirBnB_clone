@@ -167,6 +167,10 @@ class HBNBCommand(cmd.Cmd):
         print("")
         return True
 
+    def emptyline(self):
+        """nothing on empty line
+        """
+        pass
 
 def parse(arg):
     "Convert a series of zero or more strings to an argument tuple"
