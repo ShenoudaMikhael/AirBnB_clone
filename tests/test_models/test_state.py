@@ -58,10 +58,10 @@ class test_init_State(unittest.TestCase):
         """test dict"""
         dictt = datetime.now()
         dictt_iso = dictt.isoformat()
-        st = State(id="1", created_at=dictt_iso, updated_at=dictt_iso)
-        self.assertEqual(st.id, "1")
-        self.assertEqual(st.created_at, dictt)
-        self.assertEqual(st.updated_at, dictt)
+        state = State(id="1", created_at=dictt_iso, updated_at=dictt_iso)
+        self.assertEqual(state.id, "1")
+        self.assertEqual(state.created_at, dictt)
+        self.assertEqual(state.updated_at, dictt)
 
     def test_no_kwargs(self):
         """test no kwargs"""
