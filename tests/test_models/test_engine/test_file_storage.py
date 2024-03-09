@@ -93,11 +93,11 @@ class test_FileStorage_methods(unittest.TestCase):
             self.assertIn("City." + city.id, text)
             self.assertIn("Amenity." + amenity.id, text)
             self.assertIn("Review." + review.id, text)
-    
+
     def test_arg(self):
         with self.assertRaises(TypeError):
             models.storage.save(None)
-    
+
     def test_reload(self):
         basemodel = BaseModel()
         user = User()
@@ -119,7 +119,7 @@ class test_FileStorage_methods(unittest.TestCase):
 
         models.storage.reload()
 
-        objs = models.storage._FileStorage__objects
+        objs = models.storage.all()
 
         self.assertIn("BaseModel." + basemodel.id, objs)
         self.assertIn("User." + user.id, objs)
