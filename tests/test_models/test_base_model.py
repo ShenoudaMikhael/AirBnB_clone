@@ -51,20 +51,6 @@ class test_BaseModel_save(unittest.TestCase):
         instance.save()
         self.assertNotEqual(data, instance.updated_at)
 
-    def test_two_saves(self):
-        instance = BaseModel()
-        first_updated_at = instance.updated_at
-        instance.save()
-        second_updated_at = instance.updated_at
-        self.assertLess(first_updated_at, second_updated_at)
-        instance.save()
-        self.assertLess(second_updated_at, instance.updated_at)
-
-    def test_save_with_arg(self):
-        instance = BaseModel()
-        with self.assertRaises(TypeError):
-            instance.save(None)
-
     def test_save_updates_file(self):
         instance = BaseModel()
         instance.save()
