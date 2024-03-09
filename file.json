@@ -11,13 +11,5 @@
         "updated_at": "2024-03-08T19:02:22.769976",
         "name": "qqqqzzz",
         "__class__": "User"
-    },
-    "BaseModel.a14d26ad-dcad-4988-bd55-419a6f7e8f89": {
-        "id": "a14d26ad-dcad-4988-bd55-419a6f7e8f89",
-        "created_at": "2024-03-08T12:01:58.055155",
-        "updated_at": "2024-03-08T12:01:58.055308",
-        "name": "My First Model",
-        "my_number": 89,
-        "__class__": "BaseModel"
     }
 }

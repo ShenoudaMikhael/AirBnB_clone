@@ -80,6 +80,6 @@ class BaseModel:
     def update(cls, id="", att="", prop="", **kwarg):
         """return update function format"""
         if len(kwarg) > 0:
-            return ["update", " ".join([cls.__name__, id, {**prop}])]
+            return ["update", " ".join([cls.__name__, id, {**kwarg}])]
             
         return ["update", " ".join([cls.__name__, id, att, prop])]

@@ -30,6 +30,8 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, line):
         """defualt action"""
+
+         # User.update("b2b20961-e142-4aa5-a4fa-c129ed40567c",{"naem":"asdasd","name":"asdasd"})
         action_list = {
 
             "all": self.do_all,
