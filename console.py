@@ -14,7 +14,7 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """AirBnb shell"""
 
-    intro = "Welcome to the airbnb shell. Type help or ? to list commands.\n"
+    # intro = "Welcome to the airbnb shell. Type help or ? to list commands.\n"
     prompt = "(hbnb)"
     file = None
 
