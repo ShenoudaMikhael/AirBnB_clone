@@ -18,7 +18,7 @@ class test_init_file_storage(unittest.TestCase):
 
     def test_filestorage_init(self):
         self.assertEqual(type(FileStorage()), FileStorage)
-        
+
     def test_storage_init(self):
         self.assertEqual(type(models.storage), FileStorage)
 
@@ -62,11 +62,11 @@ class test_FileStorage_methods(unittest.TestCase):
         self.assertIn("State." + state.id, models.storage.all().keys())
         self.assertIn("Review." + review.id, models.storage.all().keys())
         self.assertIn("Amenity." + amenity.id, models.storage.all().keys())
-        
+
     def test_none(self):
         with self.assertRaises(AttributeError):
             models.storage.new(None)
-        
+
     def test_save(self):
         basemodel = BaseModel()
         user = User()
@@ -132,6 +132,15 @@ class test_FileStorage_methods(unittest.TestCase):
     def test_new_with_args(self):
         with self.assertRaises(TypeError):
             models.storage.new(BaseModel(), 1)
+
+    def test_destroy(self):
+        basemodel = BaseModel()
+        basemodel.save()
+        key = "{}.{}".format(basemodel.__class__.__name__, basemodel.id)
+        models.storage.reload()
+        self.assertIn(key, models.storage.all().keys())
+        models.storage.destroy(key)
+        self.assertNotIn(key, models.storage.all().keys())
 
 
 if __name__ == "__main__":
