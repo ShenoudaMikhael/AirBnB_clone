@@ -54,9 +54,18 @@ class test_BaseModel_save(unittest.TestCase):
     def test_save_updates_file(self):
         instance = BaseModel()
         instance.save()
-        instanceid = "BaseModel." + instance.id
-        with open("file.json", "r", encoding='utf-8') as f:
+        instanceid = "BaseModel.{}".format(instance.id)
+        with open("file.json", "r", encoding="utf-8") as f:
             self.assertIn(instanceid, f.read())
+
+
+class test_BaseModel_to_dict(unittest.TestCase):
+    """Unittests for to_dict"""
+
+    def test_to_dict(self):
+        instance = BaseModel()
+        data = instance.to_dict()
+        self.assertEqual(dict, type(data))
 
 
 if __name__ == "__main__":
