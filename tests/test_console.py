@@ -167,43 +167,43 @@ class TestConsole(unittest.TestCase):
             self.assertEqual(f.getvalue().strip(), "** value missing **")
 
     # BaseModel value cases
-    def command_create_BaseModel(self):
+    def test_command_create_BaseModel(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("create BaseModel")
             output = f.getvalue().strip()
             self.assertIn(f"BaseModel.{output}", storage.all().keys())
 
-    def command_create_User(self):
+    def test_command_create_User(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("create User")
             output = f.getvalue().strip()
             self.assertIn(f"User.{output}", storage.all().keys())
 
-    def command_create_City(self):
+    def test_command_create_City(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("create City")
             output = f.getvalue().strip()
             self.assertIn(f"City.{output}", storage.all().keys())
 
-    def command_create_Amenity(self):
+    def test_command_create_Amenity(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("create Amenity")
             output = f.getvalue().strip()
             self.assertIn(f"Amenity.{output}", storage.all().keys())
 
-    def command_create_Place(self):
+    def test_command_create_Place(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("create Place")
             output = f.getvalue().strip()
             self.assertIn(f"Place.{output}", storage.all().keys())
 
-    def command_create_Review(self):
+    def test_command_create_Review(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("create Review")
             output = f.getvalue().strip()
             self.assertIn(f"Review.{output}", storage.all().keys())
 
-    def command_create_State(self):
+    def test_command_create_State(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("create State")
             output = f.getvalue().strip()
