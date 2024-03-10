@@ -49,6 +49,31 @@ class TestConsole(unittest.TestCase):
 
         self.assertEqual(prompt, "(hbnb) ")
 
+    def test_create_no_arg(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("create")
+            self.assertEqual(f.getvalue(), "** class name missing **\n")
+
+    def test_create_wrong_model(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("create unknownModel")
+            self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+
+    def test_show_no_arg(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("show")
+            self.assertEqual(f.getvalue(), "** class name missing **\n")
+
+    def test_show_wrong_model(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("show UnknownModel")
+            self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+
+    def test_show_correct_model_no_id(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("show BaseModel")
+            self.assertEqual(f.getvalue(), "** instance id missing **\n")
+
 
 if __name__ == "__main__":
     unittest.main()
