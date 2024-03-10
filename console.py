@@ -50,8 +50,8 @@ class HBNBCommand(cmd.Cmd):
         """Get model count"""
         q = storage.all()
 
-        # qu = {k: q[k] for k in q if k.split(".")[0] == arg}
-        print(len(q.keys()))
+        qu = {k: q[k] for k in q if k.split(".")[0] == arg}
+        print(len(qu.keys()))
 
     def do_create(self, arg, other=None):
         """Creates a new instance of class <arg>"""

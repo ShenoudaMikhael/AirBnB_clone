@@ -12,6 +12,10 @@ class TestConsole(unittest.TestCase):
     def setUp(self):
         """setUp"""
         self.console = HBNBCommand()
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
 
     def tearDown(self):
         """
@@ -230,6 +234,14 @@ class TestConsole(unittest.TestCase):
             self.console.onecmd("create State")
             output = f.getvalue().strip()
             self.assertIn(f"State.{output}", storage.all().keys())
+
+    def test_command_count_User(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.console.onecmd("User.count()")
+            output = f.getvalue().strip()
+            self.assertEqual(
+                output, str(len([k for k in storage.all() if k.split(".")[0] == "User"]))
+            )
 
 
 if __name__ == "__main__":

@@ -26,9 +26,6 @@ class BaseModel:
     def update_atts(self, att, val, **kwarg):
         """update object"""
 
-        print("AAAA")
-        print(kwarg)
-
         if att not in ["id", "created_at", "updated_at"]:
             setattr(self, att, val)
             self.save()
