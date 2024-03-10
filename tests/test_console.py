@@ -282,6 +282,14 @@ class TestConsole(unittest.TestCase):
                 "new_name")
             self.console.onecmd(qqq)
             self.assertEqual("new_name", instance.first_name)
+    
+    def test_command_destroy_User_args(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            instance = User()
+            self.assertIn("User.{}".format(instance.id), storage.all())
+            qqq = "User.destroy('{}')".format(instance.id)
+            self.console.onecmd(qqq)
+            self.assertNotIn("User.{}".format(instance.id), storage.all())
 
 
 if __name__ == "__main__":
