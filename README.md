@@ -62,4 +62,4 @@ Updates the attribute value of the specified user object.
 ```
 (hbnb) update User 123-456-789 email "salsabeelahmed@gmail.com"
 ```   
-***
+***   
