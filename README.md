@@ -3,9 +3,11 @@
 ## Description of the project   
 This project delves into the exciting realm of full-stack web development by guiding through the creation of a functional Airbnb, a web-based platform that connects travelers with hosts who have accommodations available for rent. The journey begins with a crucial step: building a command-line interpreter to manage your Airbnb entities.   
 ***   
+
 ## Description of the command interpreter   
 This command interpreter provides the initial interface for managing objects in Airbnb clone.   
 ***   
+
 ### 1. How to start it   
 - Clone the repository from GitHub:   
 ```
@@ -19,7 +21,6 @@ cd AirBnB_clone
 ```
 ./console.py
 ```   
-   
    
 ### 2. How to use it   
 you can start interacting with it by typing commands at the prompt.   
