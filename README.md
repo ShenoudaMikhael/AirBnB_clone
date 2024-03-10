@@ -19,7 +19,7 @@ cd AirBnB_clone
 ```   
    
    
-### 2- How to use it   
+### 2. How to use it   
 you can start interacting with it by typing commands at the prompt.   
    
    
