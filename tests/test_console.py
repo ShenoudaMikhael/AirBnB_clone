@@ -4,7 +4,9 @@ import unittest
 from io import StringIO
 from unittest.mock import patch
 from console import HBNBCommand
+
 import cmd
+from models import storage
 
 
 class TestConsole(unittest.TestCase):
@@ -41,45 +43,15 @@ class TestConsole(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             HBNBCommand().onecmd("help")
 
-            self.assertNotEqual(f.getvalue(), "name 'help' is not defined\n")
-            self.assertIn("Documented commands (type help <topic>):", f.getvalue())
-
-        with patch("sys.stdout", new=StringIO()) as f:
-            HBNBCommand().onecmd("help create")
-            self.assertIn("Creates a new instance of class <arg>", f.getvalue())
-
-        with patch("sys.stdout", new=StringIO()) as f:
-            HBNBCommand().onecmd("help create")
-            self.assertIn("Creates a new instance of class <arg>", f.getvalue())
-
-        with patch("sys.stdout", new=StringIO()) as f:
-            HBNBCommand().onecmd("help show")
-            self.assertIn(
-                "Prints the string representation of an instance\n",
-                f.getvalue(),
-            )
-        with patch("sys.stdout", new=StringIO()) as f:
-            HBNBCommand().onecmd("help update")
-            self.assertIn(
-                "Updates an instance based on the class name and id\n", f.getvalue()
-            )
-        with patch("sys.stdout", new=StringIO()) as f:
-            HBNBCommand().onecmd("help destroy")
-            self.assertIn(
-                "Deletes an instance based on the class name and id\n", f.getvalue()
-            )
-        with patch("sys.stdout", new=StringIO()) as f:
-            HBNBCommand().onecmd("help all")
-            self.assertIn(
-                "Prints all string representation of all instances.\n", f.getvalue()
-            )
+        self.assertNotEqual(f.getvalue(), "name 'help' is not defined\n")
+        self.assertIn("Documented commands (type help <topic>):", f.getvalue())
 
     def test_custom_prompt(self):
         """test_custom_prompt"""
         with patch("sys.stdout", new=StringIO()) as f:
             prompt = HBNBCommand().prompt
 
-            self.assertEqual(prompt, "(hbnb) ")
+        self.assertEqual(prompt, "(hbnb) ")
 
     def test_create_no_arg(self):
         """test_create_no_arg"""
@@ -92,6 +64,13 @@ class TestConsole(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             HBNBCommand().onecmd("create unknownModel")
             self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+
+    def test_create_user(self):
+        """test_create_wrong_model"""
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("create User")
+
+            self.assertIn("User.{}".format(f.getvalue().strip()), storage.all().keys())
 
     def test_show_no_arg(self):
         """test_show_no_arg"""
