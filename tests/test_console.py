@@ -69,8 +69,11 @@ class TestConsole(unittest.TestCase):
         """test_create_wrong_model"""
         with patch("sys.stdout", new=StringIO()) as f:
             HBNBCommand().onecmd("create User")
-
             self.assertIn("User.{}".format(f.getvalue().strip()), storage.all().keys())
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("create City")
+            self.assertIn("City.{}".format(f.getvalue().strip()), storage.all().keys())
 
     def test_show_no_arg(self):
         """test_show_no_arg"""
