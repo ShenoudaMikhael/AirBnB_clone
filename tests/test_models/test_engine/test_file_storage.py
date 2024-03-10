@@ -2,7 +2,7 @@
 """Defines unittests for file_storage.py."""
 
 import models
-import unittest
+import unittest, os
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models.user import User
@@ -15,6 +15,11 @@ from models.review import Review
 
 class test_init_file_storage(unittest.TestCase):
     """Unittests for testing init"""
+
+    def setUp(self):
+        """setUp"""
+        if os.path.exists("file.json"):
+            os.remove("file.json")
 
     def test_all_empty(self):
         objects = FileStorage().all()
@@ -99,7 +104,7 @@ class test_FileStorage_methods(unittest.TestCase):
             self.assertIn("Review." + review.id, text)
 
     def test_arg_sec(self):
-        ""
+        """"""
         with self.assertRaises(TypeError):
             models.storage.save(None)
 

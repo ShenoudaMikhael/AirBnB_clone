@@ -3,6 +3,7 @@ from unittest.mock import patch
 from io import StringIO
 from console import HBNBCommand
 from time import sleep
+import os, json
 
 
 class TestConsole(unittest.TestCase):
@@ -95,6 +96,33 @@ class TestConsole(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("destroy BaseModel 121212"))
             self.assertEqual(f.getvalue().strip(), "** no instance found **")
+
+    def test_all_command(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(self.console.onecmd("all"))
+            for item in json.loads(f.getvalue().strip()):
+                models = [
+                    "[User]",
+                    "[BaseModel]",
+                    "[City]",
+                    "[Amenity]",
+                    "[Place]",
+                    "[Review]",
+                    "[State]",
+                ]
+                self.assertIn(item.split()[0], models)
+
+    def test_all_with_class_name(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(self.console.onecmd("all BaseModel"))
+
+            for item in json.loads(f.getvalue()):
+                self.assertEqual(item.split()[0], "[BaseModel]")
+
+    def test_all_with_invalid_class_name(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(self.console.onecmd("all MyModel"))
+            self.assertEqual(f.getvalue().strip(), "** class doesn't exist **")
 
 
 if __name__ == "__main__":
