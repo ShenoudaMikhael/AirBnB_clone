@@ -169,7 +169,8 @@ class TestFileStorage(unittest.TestCase):
 
     def test_initialization(self):
         """test_initialization"""
-        self.assertEqual(self.storage._FileStorage__file_path, "file.json")
+        self.assertEqual(
+            self.storage._FileStorage__file_path, "file.json")
         self.assertEqual(
             self.storage._FileStorage__objects, self.storage.all())
 
@@ -177,13 +178,14 @@ class TestFileStorage(unittest.TestCase):
         """test_all"""
         all_objects = self.storage.all()
         self.assertIsInstance(all_objects, dict)
-        self.assertEqual(all_objects, self.storage.all())
+        self.assertEqual(all_objects, {})
 
     def test_new(self):
         """test_new"""
         obj = BaseModel()
         self.storage.new(obj)
-        self.assertIn("BaseModel.{}".format(obj.id), self.storage._FileStorage__objects)
+        self.assertIn(
+            "BaseModel.{}".format(obj.id), self.storage._FileStorage__objects)
 
     def test_save_and_reload(self):
         """test_save_and_reload"""
@@ -200,6 +202,7 @@ class TestFileStorage(unittest.TestCase):
 
         self.assertIsInstance(all_objects, dict)
         self.assertIn("BaseModel.{}".format(obj.id), all_objects)
+
 
 if __name__ == "__main__":
     unittest.main()
