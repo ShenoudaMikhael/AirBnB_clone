@@ -29,28 +29,25 @@ class HBNBCommand(cmd.Cmd):
     }
 
     def default(self, line):
-        """defualt action
-        """
+        """defualt action"""
         action_list = {
-
             "all": self.do_all,
             "count": self.do_count,
             "create": self.do_create,
             "show": self.do_show,
             "destroy": self.do_destroy,
-
-            "update": self.do_update
+            "update": self.do_update,
         }
         try:
             string = eval(line)
             action_list[string[0]](
-                string[1].strip(), string[2] if len(string) == 3 else None)
+                string[1].strip(), string[2] if len(string) == 3 else None
+            )
         except Exception as e:
             print(e)
 
     def do_count(self, arg, other=None):
-        """Get model count
-        """
+        """Get model count"""
         q = storage.all()
 
         # qu = {k: q[k] for k in q if k.split(".")[0] == arg}
@@ -71,9 +68,7 @@ class HBNBCommand(cmd.Cmd):
         print(new_instance.id)
 
     def do_show(self, arg, other=None):
-        """Prints the string representation of
-        an instance based on the class name and
-        """
+        """Prints the string representation of an instance"""
         if len(arg) == 0:
             print("** class name missing **")
             return
@@ -90,8 +85,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, arg, other=None):
-        """Deletes an instance based on the class name and id
-        """
+        """Deletes an instance based on the class name and id"""
         if len(arg) == 0:
             print("** class name missing **")
             return
@@ -108,22 +102,17 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_all(self, arg, other=None):
-        """Prints all string representation of all
-        instances based or not on the class name.
-        """
+        """Prints all string representation of all instances."""
         if len(arg) > 0 and arg not in self.class_list.keys():
             print("** class doesn't exist **")
             return
         qu = storage.all()
         if arg:
-            qu = {item: qu[item]
-                  for item in qu.keys() if item.split('.')[0] == arg}
+            qu = {item: qu[item] for item in qu.keys() if item.split(".")[0] == arg}
         print([str(qu[model]) for model in qu])
 
     def do_update(self, arg, my_dict=None):
-        """Updates an instance based on the class name and id by
-        adding or updating attribute (save the change into the JSON file).
-        """
+        """Updates an instance based on the class name and id"""
         if len(arg) == 0:
             print("** class name missing **")
             return
@@ -143,8 +132,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
                 return
 
-            current_instance = storage.all()[
-                "{}.{}".format(inputs[0], inputs[1])]
+            current_instance = storage.all()["{}.{}".format(inputs[0], inputs[1])]
             # check for dict
             if my_dict is not None:
                 for k in my_dict:
@@ -158,13 +146,11 @@ class HBNBCommand(cmd.Cmd):
 
     # ----- basic shell commands -----
     def do_print_args(self, arg):
-        """echo args to shell
-        """
+        """echo args to shell"""
         print(*parse(arg))
 
     def do_quit(self, arg):
-        """Quit command to exit the program
-        """
+        """Quit command to exit the program"""
         exit()
 
     def do_EOF(self, arg):
@@ -173,8 +159,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
-        """nothing on empty line
-        """
+        """nothing on empty line"""
         pass
 
 
