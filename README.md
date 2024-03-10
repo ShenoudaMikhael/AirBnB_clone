@@ -45,7 +45,7 @@ Displays the string representation of an instance based on the class name and id
 (hbnb) show User 123-456-789
 ```   
    
-- Destroy Command   
+- Destroy Command:   
 Deletes an instance based on the class name and id.   
 ```
 (hbnb) destroy User 123-456-789
