@@ -81,5 +81,4 @@ class BaseModel:
         """return update function format"""
         if type(att) is dict:
             return ["update", " ".join([cls.__name__, id]), att]
-            # User.update("b2b20961-e142-4aa5-a4fa-c129ed40567c",{"bella":"shno"})
         return ["update", " ".join([cls.__name__, id, att, prop])]
