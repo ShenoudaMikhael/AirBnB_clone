@@ -57,7 +57,7 @@ Displays all string representation of all instances based or not on the class na
 (hbnb) all User
 ```   
    
-- Update Command   
+- Update Command:   
 Updates the attribute value of the specified user object.   
 ```
 (hbnb) update User 123-456-789 email "salsabeelahmed@gmail.com"
