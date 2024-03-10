@@ -7,6 +7,7 @@ from . import storage
 
 class BaseModel:
     """Class Base contains only Id, Creation date, update date."""
+
     def __init__(self, *args, **kwargs):
         if len(kwargs) > 0:
             for k, v in kwargs.items():
@@ -47,8 +48,7 @@ class BaseModel:
         return base_dict
 
     def __str__(self) -> str:
-        return "[{}] ({}) {}".format(
-            self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
     @classmethod
     def show(cls, id=""):
@@ -78,6 +78,7 @@ class BaseModel:
     @classmethod
     def update(cls, id="", att="", prop="", **kwarg):
         """return update function format"""
-        if isinstance(att, dict):
+        if type(att) is dict:
             return ["update", " ".join([cls.__name__, id]), att]
+            # User.update("b2b20961-e142-4aa5-a4fa-c129ed40567c",{"bella":"shno"})
         return ["update", " ".join([cls.__name__, id, att, prop])]
