@@ -1,10 +1,11 @@
 import unittest
+import json
+
 from unittest.mock import patch
 from io import StringIO
 from console import HBNBCommand
-from time import sleep
-import os, json
 from models.base_model import BaseModel
+from models import storage
 
 
 class TestConsole(unittest.TestCase):
@@ -158,6 +159,25 @@ class TestConsole(unittest.TestCase):
                 self.console.onecmd(f"update BaseModel {instance.id} email")
             )
             self.assertEqual(f.getvalue().strip(), "** value missing **")
+
+    # BaseModel value cases
+    def command_create_BaseModel(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.console.onecmd("create BaseModel")
+            output = f.getvalue().strip()
+            self.assertIn(f"BaseModel.{output}", storage.all().keys())
+
+    def command_create_User(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.console.onecmd("create User")
+            output = f.getvalue().strip()
+            self.assertIn(f"User.{output}", storage.all().keys())
+
+    def command_create_City(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.console.onecmd("create City")
+            output = f.getvalue().strip()
+            self.assertIn(f"City.{output}", storage.all().keys())
 
 
 if __name__ == "__main__":
