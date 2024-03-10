@@ -1,4 +1,5 @@
 ![alt text](65f4a1dd9c51265f49d0.png)   
+
 ## Description of the project   
 This project delves into the exciting realm of full-stack web development by guiding through the creation of a functional Airbnb, a web-based platform that connects travelers with hosts who have accommodations available for rent. The journey begins with a crucial step: building a command-line interpreter to manage your Airbnb entities.   
    
