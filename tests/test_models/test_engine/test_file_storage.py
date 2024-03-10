@@ -23,19 +23,24 @@ class test_init_file_storage(unittest.TestCase):
             os.remove("file.json")
 
     def test_all_empty(self):
+        """test_all_empty"""
         objects = FileStorage().all()
         self.assertEqual(type(objects), dict)
 
     def test_filestorage_init(self):
+        """test_filestorage_init"""
         self.assertEqual(type(FileStorage()), FileStorage)
 
     def test_storage_init(self):
+        """test_storage_init"""
         self.assertEqual(type(models.storage), FileStorage)
 
     def test_private_str(self):
+        """test_private_str"""
         self.assertEqual(str, type(models.storage._FileStorage__file_path))
 
     def test_private_dict(self):
+        """test_private_dict"""
         self.assertEqual(dict, type(models.storage._FileStorage__objects))
 
 
@@ -43,14 +48,17 @@ class test_FileStorage_methods(unittest.TestCase):
     """Unittests for testing FileStorage methods"""
 
     def test_all(self):
+        """test_all"""
         self.assertEqual(dict, type(models.storage.all()))
 
     def test_arg(self):
+        """test_arg"""
         with self.assertRaises(TypeError):
             models.storage.all(None)
             FileStorage(None)
 
     def test_new(self):
+        """test_new"""
         basemodel = BaseModel()
         user = User()
         city = City()
@@ -74,10 +82,12 @@ class test_FileStorage_methods(unittest.TestCase):
         self.assertIn("Amenity." + amenity.id, models.storage.all().keys())
 
     def test_none(self):
+        """test_none"""
         with self.assertRaises(AttributeError):
             models.storage.new(None)
 
     def test_save(self):
+        """test_save"""
         basemodel = BaseModel()
         user = User()
         city = City()
