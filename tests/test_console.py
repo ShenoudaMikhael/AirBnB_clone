@@ -39,6 +39,18 @@ class TestConsole(unittest.TestCase):
             HBNBCommand().onecmd("")
             self.assertEqual("", f.getvalue())
 
+    def test_help_exists(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("fasfadsf")
+
+        self.assertNotEqual(f.getvalue(), "name 'help' is not defined\n")
+
+    def test_custom_prompt(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            prompt = HBNBCommand().prompt
+
+        self.assertEqual(prompt, "(hbnb) ")
+
 
 if __name__ == "__main__":
     unittest.main()
