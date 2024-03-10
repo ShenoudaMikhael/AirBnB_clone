@@ -74,6 +74,31 @@ class TestConsole(unittest.TestCase):
             HBNBCommand().onecmd("show BaseModel")
             self.assertEqual(f.getvalue(), "** instance id missing **\n")
 
+    def test_show_correct_model_wrong_id(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("show BaseModel 123-123-13")
+            self.assertEqual(f.getvalue(), "** no instance found **\n")
+
+    def test_destroy_no_arg(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy")
+            self.assertEqual(f.getvalue(), "** class name missing **\n")
+
+    def test_destroy_wrong_model(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy UnknownModel")
+            self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+
+    def test_destroy_correct_model_no_id(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy BaseModel")
+            self.assertEqual(f.getvalue(), "** instance id missing **\n")
+
+    def test_destroy_correct_model_wrong_id(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy BaseModel 123-123-13")
+            self.assertEqual(f.getvalue(), "** no instance found **\n")
+
 
 if __name__ == "__main__":
     unittest.main()
