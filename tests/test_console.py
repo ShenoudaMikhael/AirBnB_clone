@@ -5,6 +5,7 @@ from unittest.mock import patch
 from io import StringIO
 from console import HBNBCommand
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
@@ -56,7 +57,8 @@ class TestConsole(unittest.TestCase):
         """test_eof_command"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("wrongComand")
-            self.assertEqual(f.getvalue().strip(), "name 'wrongComand' is not defined")
+            self.assertEqual(
+                f.getvalue().strip(), "name 'wrongComand' is not defined")
 
     def test_help_command(self):
         """test_help_command"""
@@ -243,6 +245,17 @@ class TestConsole(unittest.TestCase):
                 output, str(len([
                     k for k in storage.all() if k.split(".")[0] == "User"]))
             )
+
+    def test_command_update_User(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            instance = User()
+            instance.email = "ABC"
+            self.assertEqual("ABC", instance.email)
+            self.console.onecmd(
+                "update User {} email testemail".format(instance.id))
+            self.assertEqual("testemail", instance.email)
+
+
 
 
 if __name__ == "__main__":
