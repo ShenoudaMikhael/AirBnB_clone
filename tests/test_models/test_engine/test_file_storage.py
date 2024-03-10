@@ -104,11 +104,12 @@ class test_FileStorage_methods(unittest.TestCase):
             self.assertIn("Review." + review.id, text)
 
     def test_arg_sec(self):
-        """"""
+        """test_arg_sec"""
         with self.assertRaises(TypeError):
             models.storage.save(None)
 
     def test_reload(self):
+        """test_reload"""
         basemodel = BaseModel()
         user = User()
         city = City()

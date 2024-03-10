@@ -9,6 +9,7 @@ class TestBaseModelInit(unittest.TestCase):
     """Unittests for testing init of User class"""
 
     def test_no_args(self):
+        """test_no_args"""
         self.assertEqual(BaseModel, type(BaseModel()))
 
     def test_id(self):
