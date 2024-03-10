@@ -80,62 +80,74 @@ class TestConsole(unittest.TestCase):
 
     # create
     def test_create_command(self):
+        """test_create_command"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("create"))
             self.assertEqual(f.getvalue().strip(), "** class name missing **")
 
     def test_create_invalid_class(self):
+        """test_create_invalid_class"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("create MyModel"))
             self.assertEqual(f.getvalue().strip(), "** class doesn't exist **")
 
     def test_create_valid_class(self):
+        """test_create_valid_class"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("create BaseModel"))
             output = f.getvalue().strip()
             self.assertTrue(len(output) > 0)
 
     def test_show_command(self):
+        """test_show_command"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("show"))
             self.assertEqual(f.getvalue().strip(), "** class name missing **")
 
     def test_show_missing_class(self):
+        """test_show_missing_class"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("show MyModel"))
             self.assertEqual(f.getvalue().strip(), "** class doesn't exist **")
 
     def test_show_missing_id(self):
+        """test_show_missing_id"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("show BaseModel"))
             self.assertEqual(f.getvalue().strip(), "** instance id missing **")
 
     def test_show_no_instance_found(self):
+        """test_show_no_instance_found"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("show BaseModel 121212"))
             self.assertEqual(f.getvalue().strip(), "** no instance found **")
 
     def test_destroy_command(self):
+        """test_destroy_command"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("destroy"))
             self.assertEqual(f.getvalue().strip(), "** class name missing **")
 
     def test_destroy_missing_class(self):
+        """test_destroy_missing_class"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("destroy MyModel"))
             self.assertEqual(f.getvalue().strip(), "** class doesn't exist **")
 
     def test_destroy_missing_id(self):
+        """test_destroy_missing_id"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("destroy BaseModel"))
             self.assertEqual(f.getvalue().strip(), "** instance id missing **")
 
     def test_destroy_no_instance_found(self):
+        """test_destroy_no_instance_found"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("destroy BaseModel 121212"))
             self.assertEqual(f.getvalue().strip(), "** no instance found **")
 
     def test_all_command(self):
+        """test_all_command"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("all"))
             for item in json.loads(f.getvalue().strip()):
@@ -151,6 +163,7 @@ class TestConsole(unittest.TestCase):
                 self.assertIn(item.split()[0], models)
 
     def test_all_with_class_name(self):
+        """test_all_with_class_name"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("all BaseModel"))
 
@@ -158,37 +171,46 @@ class TestConsole(unittest.TestCase):
                 self.assertEqual(item.split()[0], "[BaseModel]")
 
     def test_all_with_invalid_class_name(self):
+        """test_all_with_invalid_class_name"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("all MyModel"))
             self.assertEqual(f.getvalue().strip(), "** class doesn't exist **")
 
     def test_update_command(self):
+        """test_update_command"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("update"))
             self.assertEqual(f.getvalue().strip(), "** class name missing **")
 
     def test_update_missing_class(self):
+        """test_update_missing_class"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("update MyModel"))
             self.assertEqual(f.getvalue().strip(), "** class doesn't exist **")
 
     def test_update_missing_id(self):
+        """test_update_missing_id"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("update BaseModel"))
             self.assertEqual(f.getvalue().strip(), "** instance id missing **")
 
     def test_update_no_instance_found(self):
+        """test_update_no_instance_found"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("update BaseModel 121212"))
             self.assertEqual(f.getvalue().strip(), "** no instance found **")
 
     def test_update_missing_attribute(self):
+        """test_update_missing_attribute"""
         with patch("sys.stdout", new=StringIO()) as f:
             instance = BaseModel()
-            self.assertFalse(self.console.onecmd(f"update BaseModel {instance.id}"))
-            self.assertEqual(f.getvalue().strip(), "** attribute name missing **")
+            self.assertFalse(
+                self.console.onecmd(f"update BaseModel {instance.id}"))
+            self.assertEqual(
+                f.getvalue().strip(), "** attribute name missing **")
 
     def test_update_missing_value(self):
+        """test_update_missing_value"""
         with patch("sys.stdout", new=StringIO()) as f:
             instance = BaseModel()
             self.assertFalse(
@@ -198,48 +220,56 @@ class TestConsole(unittest.TestCase):
 
     # BaseModel value cases
     def test_command_create_BaseModel(self):
+        """test_command_create_BaseModel"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("create BaseModel")
             output = f.getvalue().strip()
             self.assertIn(f"BaseModel.{output}", storage.all().keys())
 
     def test_command_create_User(self):
+        """test_command_create_User"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("create User")
             output = f.getvalue().strip()
             self.assertIn(f"User.{output}", storage.all().keys())
 
     def test_command_create_City(self):
+        """test_command_create_City"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("create City")
             output = f.getvalue().strip()
             self.assertIn(f"City.{output}", storage.all().keys())
 
     def test_command_create_Amenity(self):
+        """test_command_create_Amenity"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("create Amenity")
             output = f.getvalue().strip()
             self.assertIn(f"Amenity.{output}", storage.all().keys())
 
     def test_command_create_Place(self):
+        """test_command_create_Place"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("create Place")
             output = f.getvalue().strip()
             self.assertIn(f"Place.{output}", storage.all().keys())
 
     def test_command_create_Review(self):
+        """test_command_create_Review"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("create Review")
             output = f.getvalue().strip()
             self.assertIn(f"Review.{output}", storage.all().keys())
 
     def test_command_create_State(self):
+        """test_command_create_State"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("create State")
             output = f.getvalue().strip()
             self.assertIn(f"State.{output}", storage.all().keys())
 
     def test_command_count_User(self):
+        """test_command_count_User"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("User.count()")
             output = f.getvalue().strip()
@@ -249,6 +279,7 @@ class TestConsole(unittest.TestCase):
             )
 
     def test_command_update_User(self):
+        """test_command_update_User"""
         with patch("sys.stdout", new=StringIO()) as f:
             instance = User()
             instance.email = "ABC"
@@ -258,6 +289,7 @@ class TestConsole(unittest.TestCase):
             self.assertEqual("testemail", instance.email)
 
     def test_command_update_User_dict(self):
+        """test_command_update_User_dict"""
         with patch("sys.stdout", new=StringIO()) as f:
             instance = User()
             instance.last_name = "ABC"
@@ -272,6 +304,7 @@ class TestConsole(unittest.TestCase):
             self.assertEqual("new_name", instance.first_name)
 
     def test_command_update_User_args(self):
+        """test_command_update_User_args"""
         with patch("sys.stdout", new=StringIO()) as f:
             instance = User()
             instance.first_name = "first_name"
@@ -282,8 +315,9 @@ class TestConsole(unittest.TestCase):
                 "new_name")
             self.console.onecmd(qqq)
             self.assertEqual("new_name", instance.first_name)
-    
+
     def test_command_destroy_User_args(self):
+        """test_command_destroy_User_args"""
         with patch("sys.stdout", new=StringIO()) as f:
             instance = User()
             self.assertIn("User.{}".format(instance.id), storage.all())
@@ -292,6 +326,7 @@ class TestConsole(unittest.TestCase):
             self.assertNotIn("User.{}".format(instance.id), storage.all())
 
     def test_command_show(self):
+        """test_command_show"""
         with patch("sys.stdout", new=StringIO()) as f:
             instance = User()
 

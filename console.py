@@ -108,7 +108,8 @@ class HBNBCommand(cmd.Cmd):
             return
         qu = storage.all()
         if arg:
-            qu = {item: qu[item] for item in qu.keys() if item.split(".")[0] == arg}
+            qu = {item: qu[
+                item] for item in qu.keys() if item.split(".")[0] == arg}
         print([str(qu[model]) for model in qu])
 
     def do_update(self, arg, my_dict=None):
@@ -132,7 +133,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
                 return
 
-            current_instance = storage.all()["{}.{}".format(inputs[0], inputs[1])]
+            current_instance = storage.all()[
+                "{}.{}".format(inputs[0], inputs[1])]
             # check for dict
             if my_dict is not None:
                 for k in my_dict:
