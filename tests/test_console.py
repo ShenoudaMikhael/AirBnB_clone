@@ -23,27 +23,25 @@ class TestConsole(unittest.TestCase):
         """Test empty line input"""
         with patch("sys.stdout", new=StringIO()) as f:
             HBNBCommand().onecmd("EOF")
-            # print(f.getvalue())
             self.assertEqual("\n", f.getvalue())
 
     def test_quit(self):
         """Test empty line input"""
-        with patch("sys.stdout", new=StringIO()):
-            # print(f.getvalue())
-            with self.assertRaises(SystemExit):
-                HBNBCommand().onecmd("quit")
+        with self.assertRaises(SystemExit):
+            HBNBCommand().onecmd("quit")
 
     def test_empty_input(self):
         """Test empty line input"""
         with patch("sys.stdout", new=StringIO()) as f:
-            HBNBCommand().onecmd("")
+            HBNBCommand().onecmd("\n")
             self.assertEqual("", f.getvalue())
 
     def test_help_exists(self):
         with patch("sys.stdout", new=StringIO()) as f:
-            HBNBCommand().onecmd("fasfadsf")
+            HBNBCommand().onecmd("help")
 
         self.assertNotEqual(f.getvalue(), "name 'help' is not defined\n")
+        self.assertIn("Documented commands (type help <topic>):", f.getvalue())
 
     def test_custom_prompt(self):
         with patch("sys.stdout", new=StringIO()) as f:
