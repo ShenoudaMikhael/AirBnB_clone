@@ -33,7 +33,7 @@ Displays a description of available commands.
 (hbnb) help
 ```   
    
-- Create Command   
+- Create Command:   
 Creates a new instance object of a class.   
 ```
 (hbnb) create User
