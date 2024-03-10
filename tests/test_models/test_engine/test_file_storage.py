@@ -98,7 +98,8 @@ class test_FileStorage_methods(unittest.TestCase):
             self.assertIn("Amenity." + amenity.id, text)
             self.assertIn("Review." + review.id, text)
 
-    def test_arg(self):
+    def test_arg_sec(self):
+        ""
         with self.assertRaises(TypeError):
             models.storage.save(None)
 
