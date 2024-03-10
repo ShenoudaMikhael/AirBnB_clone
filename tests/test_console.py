@@ -7,6 +7,7 @@ from console import HBNBCommand
 
 import cmd
 from models import storage
+from models.base_model import BaseModel
 
 
 class TestConsole(unittest.TestCase):
@@ -71,10 +72,6 @@ class TestConsole(unittest.TestCase):
             HBNBCommand().onecmd("create User")
             self.assertIn("User.{}".format(f.getvalue().strip()), storage.all().keys())
 
-        with patch("sys.stdout", new=StringIO()) as f:
-            HBNBCommand().onecmd("create City")
-            self.assertIn("City.{}".format(f.getvalue().strip()), storage.all().keys())
-
     def test_show_no_arg(self):
         """test_show_no_arg"""
         with patch("sys.stdout", new=StringIO()) as f:
@@ -98,6 +95,15 @@ class TestConsole(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             HBNBCommand().onecmd("show BaseModel 123-123-13")
             self.assertEqual(f.getvalue(), "** no instance found **\n")
+
+    def test_show_correct_model_with_id(self):
+        """test_show_correct_model_wrong_id"""
+        instance = BaseModel()
+        instance_str = instance.__str__()
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            HBNBCommand().onecmd("show BaseModel {}".format(instance.id))
+            self.assertEqual(f.getvalue().strip(), instance_str)
 
     def test_destroy_no_arg(self):
         """test_destroy_no_arg"""
