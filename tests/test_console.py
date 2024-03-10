@@ -256,7 +256,5 @@ class TestConsole(unittest.TestCase):
             self.assertEqual("testemail", instance.email)
 
 
-
-
 if __name__ == "__main__":
     unittest.main()
