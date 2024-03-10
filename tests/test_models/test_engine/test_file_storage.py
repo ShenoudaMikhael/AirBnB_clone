@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Defines unittests for file_storage.py."""
-
+import os
 import models
 import unittest
 from models.base_model import BaseModel
@@ -28,6 +28,17 @@ class test_init_file_storage(unittest.TestCase):
     def test_private_dict(self):
         self.assertEqual(dict, type(models.storage._FileStorage__objects))
 
+    def no_json_file(self):
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
+        try:
+            os.rename("tmp", "file.json")
+        except IOError:
+            pass
+        FileStorage._FileStorage__objects = {}
+
 
 class test_FileStorage_methods(unittest.TestCase):
     """Unittests for testing FileStorage methods"""
@@ -39,7 +50,7 @@ class test_FileStorage_methods(unittest.TestCase):
         with self.assertRaises(TypeError):
             models.storage.all(None)
             FileStorage(None)
-            
+
     def test_FileStorage_instantiation_no_args(self):
         self.assertEqual(type(FileStorage()), FileStorage)
 
