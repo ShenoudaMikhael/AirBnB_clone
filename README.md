@@ -39,7 +39,7 @@ Creates a new instance object of a class.
 (hbnb) create User
 ```   
    
-- Show Command   
+- Show Command:   
 Displays the string representation of an instance based on the class name and id.   
 ```
 (hbnb) show User 123-456-789
