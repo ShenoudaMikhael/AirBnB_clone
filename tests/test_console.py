@@ -4,6 +4,7 @@ from io import StringIO
 from console import HBNBCommand
 from time import sleep
 import os, json
+from models.base_model import BaseModel
 
 
 class TestConsole(unittest.TestCase):
@@ -123,6 +124,40 @@ class TestConsole(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd("all MyModel"))
             self.assertEqual(f.getvalue().strip(), "** class doesn't exist **")
+
+    def test_update_command(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(self.console.onecmd("update"))
+            self.assertEqual(f.getvalue().strip(), "** class name missing **")
+
+    def test_update_missing_class(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(self.console.onecmd("update MyModel"))
+            self.assertEqual(f.getvalue().strip(), "** class doesn't exist **")
+
+    def test_update_missing_id(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(self.console.onecmd("update BaseModel"))
+            self.assertEqual(f.getvalue().strip(), "** instance id missing **")
+
+    def test_update_no_instance_found(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(self.console.onecmd("update BaseModel 121212"))
+            self.assertEqual(f.getvalue().strip(), "** no instance found **")
+
+    def test_update_missing_attribute(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            instance = BaseModel()
+            self.assertFalse(self.console.onecmd(f"update BaseModel {instance.id}"))
+            self.assertEqual(f.getvalue().strip(), "** attribute name missing **")
+
+    def test_update_missing_value(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            instance = BaseModel()
+            self.assertFalse(
+                self.console.onecmd(f"update BaseModel {instance.id} email")
+            )
+            self.assertEqual(f.getvalue().strip(), "** value missing **")
 
 
 if __name__ == "__main__":
