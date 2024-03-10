@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """Defines unittests for file_storage.py."""
 
+import unittest
+import os
 import models
-import unittest, os
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models.user import User
