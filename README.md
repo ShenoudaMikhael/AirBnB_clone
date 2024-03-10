@@ -51,7 +51,7 @@ Deletes an instance based on the class name and id.
 (hbnb) destroy User 123-456-789
 ```   
    
-- All Command   
+- All Command:   
 Displays all string representation of all instances based or not on the class name.   
 ```
 (hbnb) all User
