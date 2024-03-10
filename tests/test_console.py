@@ -1,5 +1,5 @@
 import unittest
-import json
+import json, os
 
 from unittest.mock import patch
 from io import StringIO
@@ -9,10 +9,18 @@ from models import storage
 
 
 class TestConsole(unittest.TestCase):
-
     def setUp(self):
         """setUp"""
         self.console = HBNBCommand()
+
+    def tearDown(self):
+        """
+        Remove temporary file (file.json) created as a result
+        """
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
 
     def test_quit_command(self):
         """test_quit_command"""
@@ -25,6 +33,20 @@ class TestConsole(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertTrue(self.console.onecmd("EOF"))
             self.assertEqual(f.getvalue().strip(), "")
+
+    def test_docstrings(self):
+        """checking for docstrings"""
+        self.assertIsNotNone(self.console.__doc__)
+        self.assertIsNotNone(HBNBCommand.emptyline.__doc__)
+        self.assertIsNotNone(HBNBCommand.do_quit.__doc__)
+        self.assertIsNotNone(HBNBCommand.do_EOF.__doc__)
+        self.assertIsNotNone(HBNBCommand.do_create.__doc__)
+        self.assertIsNotNone(HBNBCommand.do_show.__doc__)
+        self.assertIsNotNone(HBNBCommand.do_destroy.__doc__)
+        self.assertIsNotNone(HBNBCommand.do_count.__doc__)
+        self.assertIsNotNone(HBNBCommand.do_all.__doc__)
+        self.assertIsNotNone(HBNBCommand.do_update.__doc__)
+        self.assertIsNotNone(HBNBCommand.default.__doc__)
 
     def test_wrong_command(self):
         """test_eof_command"""
