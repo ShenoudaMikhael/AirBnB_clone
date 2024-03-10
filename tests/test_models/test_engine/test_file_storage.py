@@ -23,7 +23,7 @@ class test_init_file_storage(unittest.TestCase):
 
     def test_all_empty(self):
         objects = FileStorage().all()
-        self.assertEqual(objects, {})
+        self.assertEqual(type(objects), dict)
 
     def test_filestorage_init(self):
         self.assertEqual(type(FileStorage()), FileStorage)

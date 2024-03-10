@@ -26,6 +26,12 @@ class TestConsole(unittest.TestCase):
             self.assertTrue(self.console.onecmd("EOF"))
             self.assertEqual(f.getvalue().strip(), "")
 
+    def test_wrong_command(self):
+        """test_eof_command"""
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.console.onecmd("wrongComand")
+            self.assertEqual(f.getvalue().strip(), "name 'wrongComand' is not defined")
+
     def test_help_command(self):
         """test_help_command"""
         with patch("sys.stdout", new=StringIO()) as f:
@@ -178,6 +184,30 @@ class TestConsole(unittest.TestCase):
             self.console.onecmd("create City")
             output = f.getvalue().strip()
             self.assertIn(f"City.{output}", storage.all().keys())
+
+    def command_create_Amenity(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.console.onecmd("create Amenity")
+            output = f.getvalue().strip()
+            self.assertIn(f"Amenity.{output}", storage.all().keys())
+
+    def command_create_Place(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.console.onecmd("create Place")
+            output = f.getvalue().strip()
+            self.assertIn(f"Place.{output}", storage.all().keys())
+
+    def command_create_Review(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.console.onecmd("create Review")
+            output = f.getvalue().strip()
+            self.assertIn(f"Review.{output}", storage.all().keys())
+
+    def command_create_State(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.console.onecmd("create State")
+            output = f.getvalue().strip()
+            self.assertIn(f"State.{output}", storage.all().keys())
 
 
 if __name__ == "__main__":
