@@ -255,6 +255,20 @@ class TestConsole(unittest.TestCase):
                 "update User {} email testemail".format(instance.id))
             self.assertEqual("testemail", instance.email)
 
+    def test_command_update_User_dict(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            instance = User()
+            instance.last_name = "ABC"
+            instance.first_name = "first_name"
+            self.assertEqual("ABC", instance.last_name)
+            qqq = "User.update('{}',{}{}".format(
+                instance.id,
+                "{'first_name':'new_name',",
+                "'last_name':'new_last_name'})")
+            self.console.onecmd(qqq)
+            self.assertEqual("new_last_name", instance.last_name)
+            self.assertEqual("new_name", instance.first_name)
+
 
 if __name__ == "__main__":
     unittest.main()
