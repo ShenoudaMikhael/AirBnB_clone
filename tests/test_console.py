@@ -33,6 +33,12 @@ class TestConsole(unittest.TestCase):
 
             self.assertTrue(self.console.onecmd("quit"))
 
+    def test_help_quit(self):
+        h = "Quit command to exit the program"
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("help quit"))
+            self.assertEqual(h, output.getvalue().strip())
+
     def test_eof_command(self):
         """test_eof_command"""
         with patch("sys.stdout", new=StringIO()) as f:
