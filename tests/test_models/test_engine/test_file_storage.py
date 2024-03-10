@@ -152,5 +152,50 @@ class test_FileStorage_methods(unittest.TestCase):
         self.assertIn("Review." + review.id, objs)
 
 
+class TestFileStorage(unittest.TestCase):
+    """TestFileStorage"""
+    def setUp(self):
+        """setUp"""
+        self.file_path = "test_file.json"
+        self.storage = FileStorage()
+
+    def tearDown(self):
+        """tearDown"""
+        if os.path.exists(self.file_path):
+            os.remove(self.file_path)
+
+    def test_initialization(self):
+        """test_initialization"""
+        self.assertEqual(self.storage._FileStorage__file_path, "file.json")
+        self.assertEqual(self.storage._FileStorage__objects, {})
+
+    def test_all(self):
+        """test_all"""
+        all_objects = self.storage.all()
+        self.assertIsInstance(all_objects, dict)
+        self.assertEqual(all_objects, {})
+
+    def test_new(self):
+        """test_new"""
+        obj = BaseModel()
+        self.storage.new(obj)
+        self.assertIn("BaseModel.{}".format(obj.id), self.storage._FileStorage__objects)
+
+    def test_save_and_reload(self):
+        """test_save_and_reload"""
+        obj = BaseModel()
+        self.storage.new(obj)
+        self.storage.save()
+
+        # Check if the file exists after saving
+        self.assertTrue(os.path.exists(self.storage._FileStorage__file_path))
+
+        new_storage = FileStorage()
+        new_storage.reload()
+        all_objects = new_storage.all()
+
+        self.assertIsInstance(all_objects, dict)
+        self.assertIn("BaseModel.{}".format(obj.id), all_objects)
+
 if __name__ == "__main__":
     unittest.main()
