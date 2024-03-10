@@ -76,6 +76,26 @@ class TestConsole(unittest.TestCase):
             self.assertFalse(self.console.onecmd("show BaseModel 121212"))
             self.assertEqual(f.getvalue().strip(), "** no instance found **")
 
+    def test_destroy_command(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(self.console.onecmd("destroy"))
+            self.assertEqual(f.getvalue().strip(), "** class name missing **")
+
+    def test_destroy_missing_class(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(self.console.onecmd("destroy MyModel"))
+            self.assertEqual(f.getvalue().strip(), "** class doesn't exist **")
+
+    def test_destroy_missing_id(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(self.console.onecmd("destroy BaseModel"))
+            self.assertEqual(f.getvalue().strip(), "** instance id missing **")
+
+    def test_destroy_no_instance_found(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(self.console.onecmd("destroy BaseModel 121212"))
+            self.assertEqual(f.getvalue().strip(), "** no instance found **")
+
 
 if __name__ == "__main__":
     unittest.main()
