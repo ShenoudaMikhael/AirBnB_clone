@@ -240,7 +240,8 @@ class TestConsole(unittest.TestCase):
             self.console.onecmd("User.count()")
             output = f.getvalue().strip()
             self.assertEqual(
-                output, str(len([k for k in storage.all() if k.split(".")[0] == "User"]))
+                output, str(len([
+                    k for k in storage.all() if k.split(".")[0] == "User"]))
             )
 
 
