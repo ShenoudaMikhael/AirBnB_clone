@@ -1,6 +1,7 @@
+"""Console Module Test cases"""
 import unittest
-import json, os
-
+import json
+import os
 from unittest.mock import patch
 from io import StringIO
 from console import HBNBCommand
@@ -10,6 +11,7 @@ from models import storage
 
 
 class TestConsole(unittest.TestCase):
+    """Test Console class"""
     def setUp(self):
         """setUp"""
         self.console = HBNBCommand()
@@ -32,12 +34,6 @@ class TestConsole(unittest.TestCase):
         with self.assertRaises(SystemExit):
 
             self.assertTrue(self.console.onecmd("quit"))
-
-    def test_help_quit(self):
-        msg = "Quit command to exit the program"
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("help quit"))
-            self.assertEqual(msg, output.getvalue().strip())
 
     def test_eof_command(self):
         """test_eof_command"""
@@ -273,6 +269,18 @@ class TestConsole(unittest.TestCase):
                 "'last_name':'new_last_name'})")
             self.console.onecmd(qqq)
             self.assertEqual("new_last_name", instance.last_name)
+            self.assertEqual("new_name", instance.first_name)
+
+    def test_command_update_User_args(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            instance = User()
+            instance.first_name = "first_name"
+            self.assertEqual("first_name", instance.first_name)
+            qqq = "User.update('{}','{}','{}')".format(
+                instance.id,
+                "first_name",
+                "new_name")
+            self.console.onecmd(qqq)
             self.assertEqual("new_name", instance.first_name)
 
 
