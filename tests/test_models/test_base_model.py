@@ -43,16 +43,18 @@ class TestBaseModelInit(unittest.TestCase):
         self.assertLess(user1.updated_at, user2.updated_at)
 
 
-class test_BaseModel_save(unittest.TestCase):
+class TestBaseModelSave(unittest.TestCase):
     """Unittests for save"""
 
     def test_save(self):
+        """test_save"""
         instance = BaseModel()
         data = instance.updated_at
         instance.save()
         self.assertNotEqual(data, instance.updated_at)
 
     def test_save_updates_file(self):
+        """test_save_updates_file"""
         instance = BaseModel()
         instance.save()
         instanceid = "BaseModel.{}".format(instance.id)
@@ -60,15 +62,17 @@ class test_BaseModel_save(unittest.TestCase):
             self.assertIn(instanceid, f.read())
 
 
-class test_BaseModel_to_dict(unittest.TestCase):
+class TestBaseModelTodict(unittest.TestCase):
     """Unittests for to_dict"""
 
     def test_to_dict(self):
+        """test_to_dict"""
         instance = BaseModel()
         data = instance.to_dict()
         self.assertEqual(dict, type(data))
 
     def test_to_dict_keys(self):
+        """test_to_dict_keys"""
         instance = BaseModel()
         self.assertIn("id", instance.to_dict())
         self.assertIn("created_at", instance.to_dict())
