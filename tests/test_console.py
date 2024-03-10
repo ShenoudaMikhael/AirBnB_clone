@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import patch
 from io import StringIO
 from console import HBNBCommand
+from time import sleep
 
 
 class TestConsole(unittest.TestCase):
@@ -37,6 +38,23 @@ class TestConsole(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(self.console.onecmd(""))
             self.assertEqual(f.getvalue().strip(), "")
+
+    # create
+    def test_create_command(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(self.console.onecmd("create"))
+            self.assertEqual(f.getvalue().strip(), "** class name missing **")
+
+    def test_create_invalid_class(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(self.console.onecmd("create MyModel"))
+            self.assertEqual(f.getvalue().strip(), "** class doesn't exist **")
+
+    def test_create_valid_class(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(self.console.onecmd("create BaseModel"))
+            output = f.getvalue().strip()
+            self.assertTrue(len(output) > 0)
 
 
 if __name__ == "__main__":
