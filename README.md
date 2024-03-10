@@ -23,7 +23,7 @@ cd AirBnB_clone
 you can start interacting with it by typing commands at the prompt.   
    
    
-### 3- Examples   
+### 3. Examples   
 - Help Command   
 Displays a description of available commands.   
 ```
