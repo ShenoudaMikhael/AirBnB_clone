@@ -291,6 +291,15 @@ class TestConsole(unittest.TestCase):
             self.console.onecmd(qqq)
             self.assertNotIn("User.{}".format(instance.id), storage.all())
 
+    def test_command_show(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            instance = User()
+
+            qqq = "User.show('{}')".format(instance.id)
+            self.console.onecmd(qqq)
+            result = f.getvalue().strip()
+            self.assertEqual("{}".format(instance.__str__()), result)
+
 
 if __name__ == "__main__":
     unittest.main()
