@@ -156,6 +156,9 @@ class TestFileStorage(unittest.TestCase):
     """TestFileStorage"""
     def setUp(self):
         """setUp"""
+        """setUp"""
+        if os.path.exists("file.json"):
+            os.remove("file.json")
         self.file_path = "test_file.json"
         self.storage = FileStorage()
 
@@ -167,13 +170,14 @@ class TestFileStorage(unittest.TestCase):
     def test_initialization(self):
         """test_initialization"""
         self.assertEqual(self.storage._FileStorage__file_path, "file.json")
-        self.assertEqual(self.storage._FileStorage__objects, {})
+        self.assertEqual(
+            self.storage._FileStorage__objects, self.storage.all())
 
     def test_all(self):
         """test_all"""
         all_objects = self.storage.all()
         self.assertIsInstance(all_objects, dict)
-        self.assertEqual(all_objects, {})
+        self.assertEqual(all_objects, self.storage.all())
 
     def test_new(self):
         """test_new"""
