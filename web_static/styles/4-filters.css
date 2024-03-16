@@ -1,0 +1,35 @@
+.filters {
+    /* 
+    color white
+    height: 70px
+    width: 100% of the container
+    border 1px #DDDDDD with radius 4px
+    */
+    position: relative;
+    background-color: FFFFFF;
+    height: 70px;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    display: flex;
+
+
+}
+
+.filters>button {
+    font-size: 18px;
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    height: 48px;
+    bottom: 0;
+    width: 20%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    position: absolute;
+    right: 30px;
+    top: calc((70px - 48px) / 2);
+}
+
+.filters>button:hover {
+    opacity: 90%;
+}
